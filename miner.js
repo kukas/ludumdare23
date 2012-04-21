@@ -9,54 +9,18 @@ function Miner (x_c,y_c) {
 	this.texture=new Image();
 	this.texture.src="./Assets/miner.bmp";
 	this.target=false;
-	this.mine = function (obj){
-		if(obj){
-			if(obj.x==this.x && obj.y==this.y){
-				this.vector={x:0,y:0};
-			}
-			if(obj.x==this.x && obj.y!=this.y){
-				if(obj.y-this.y > 0){
-					this.vector.y=this.maxvec;
-				}
-				if(obj.y-this.y < 0){
-					this.vector.y=-this.maxvec;
-				}
-			}
-			if(obj.x!=this.x && obj.y == this.y){
-				if(obj.x-this.x > 0){
-					this.vector.x=this.maxvec;
-				}
-				if(obj.x-this.x < 0){
-					this.vector.x=-this.maxvec;
-				}
-			}
-			else if(obj.x!=this.x && obj.y!= this.y){
-				if(obj.x-this.x > 0){
-					this.vector.x=this.maxvec;
-				}
-				if(obj.x-this.x < 0){
-					this.vector.x=-this.maxvec;
-				}
-				if(obj.y-this.y > 0){
-					this.vector.y=this.maxvec;
-				}
-				if(obj.y-this.y < 0){
-					this.vector.y=-this.maxvec;
-				}
-			}
-		}
-		else{ return false; }
-	};
 	this.render = function (ctx) {
 		this.move();
-		ctx.drawImage(this.texture, this.x,this.y,this.width,this.height);
+		ctx.save();
+		ctx.rotate(this.rotation);
+		ctx.translate(this.x,this.y);
+		ctx.drawImage(this.texture, -this.width/2,-this.height/2,this.width,this.height);
+		ctx.restore();
 		
 	};
 	this.tick = function (){
-		this.target={x:game.objects[0].x,y:game.objects[0].y};
-		if(this.target){
-			this.mine(this.target);
-		}
+		this.setTarget(game.objects[1].x,game.objects[1].y);
+		this.goToTarget(game.objects[1].x,game.objects[1].y);
 	};
 };
 Miner.prototype = new Object2D();

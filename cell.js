@@ -8,7 +8,7 @@ function Cell(x,y){
 	this.vector = { x:0.3,y:0.3 };
 
 	this.organely = {
-		jadro : { x:0, y:0,distance:0, width:30, height:30 },
+		jadro : { x:0, y:0,distance:0, width:30, height:30, src:"Assets/nucleus.png" },
 		mitochondrie1 : { distance:40, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10 },
 		mitochondrie2 : { distance:35, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10 },
 		mitochondrie3 : { distance:45, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10 },
@@ -28,6 +28,15 @@ function Cell(x,y){
 	this.width=this.radius;
 	this.height=this.radius;
 
+	this.load = function(){
+		for(i in this.organely){
+			this.organely[i].image = new Image();
+			this.organely[i].image.src = this.organely[i].src;
+		}
+	}
+
+	this.load();
+
 	this.render = function(ctx){
 		//ctx.strokeRect(this.x, this.y, 10,10);
 		var b = ctx.createPattern( this.background, "repeat" );
@@ -42,7 +51,8 @@ function Cell(x,y){
 		ctx.save();
 		ctx.translate(this.x,this.y);
 		for(var i in this.organely){
-			ctx.fillRect(this.organely[i].x - this.organely[i].width/2, this.organely[i].y - this.organely[i].height/2, this.organely[i].width,this.organely[i].height);
+			//ctx.fillRect(this.organely[i].x - this.organely[i].width/2, this.organely[i].y - this.organely[i].height/2, this.organely[i].width,this.organely[i].height);
+			if(this.organely[i].image) ctx.drawImage(this.organely[i].image,this.organely[i].x - this.organely[i].image.width/2, this.organely[i].y - this.organely[i].image.height/2)
 		}
 		ctx.restore();
 	};
