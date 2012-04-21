@@ -21,6 +21,13 @@ function Miner (x_c,y_c) {
 	this.tick = function (){
 		this.setTarget(game.objects[1].x,game.objects[1].y);
 		this.goToTarget(game.objects[1].x,game.objects[1].y);
+		for(i in game.objects){
+			if(game.objects[i] && game.objects[i] != this){
+				if(game.colliding(this, game.objects[i])){
+					console.log("Koliduje"+this);
+				}
+			}
+		};
 	};
 };
 Miner.prototype = new Object2D();
