@@ -5,7 +5,7 @@ function Level(){
 		new Cell(100,200),
 		new Cell(200,200),
 		new Cell(300,300),
-		new Miner(150, 30)
+		new Miner(300, 30)
 	]
 };
 level= new Level();

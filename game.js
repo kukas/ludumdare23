@@ -65,7 +65,14 @@ function Game(canvas){
 	
 	this.camera = {x:0,y:0};
 
-	this.objects = [ new Cell(100,100) ];
+	this.level=new Level();
+	this.init_level = function (id){
+		for(i in this.level[id]){
+			this.objects[i]=this.level[id][i];
+		};
+	};
+	
+	this.objects = [  ];
 
 	this.selected = [];
 

@@ -23,7 +23,6 @@ function Cell(x,y){
 			max = d;
 		}
 	}
-	console.log(max)
 	this.radius = max;
 	this.width=2*this.radius;
 	this.height=2*this.radius;
