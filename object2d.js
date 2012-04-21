@@ -19,6 +19,14 @@ function Object2D(){
 Object2D.prototype.move = function() {
 	this.x += this.vector.x;
 	this.y += this.vector.y;
+
+	var c = game.findCollisions( this );
+	if(c){
+		game.debugCube.x = (this.x+c.x)/2;
+		game.debugCube.y = (this.y+c.y)/2;
+		this.x -= this.vector.x;
+		this.y -= this.vector.y;
+	}
 };
 
 Object2D.prototype.accelerate = function(vec) {

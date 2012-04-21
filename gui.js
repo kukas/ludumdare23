@@ -41,8 +41,9 @@ function GUI(ctx){
 		this.function = fun;
 
 		this.draw = function( ctx ){
-			ctx.fillStyle = color;
-			ctx.fillRect( this.x, this.y, this.width, this.height );
+			ctx.strokeStyle = color;
+			ctx.lineWidth = 1;
+			ctx.strokeRect( this.x, this.y, this.width, this.height );
 		}
 	};
 
@@ -53,6 +54,10 @@ function GUI(ctx){
 
 	this.addRectangle = function(name, x,y, width,height, color){
 		this.rectangles[ name ] = new Rectangle(x,y, width,height, color);
+	};
+
+	this.addButton = function(name, x,y, width,height, color, fun){
+		this.buttons[ name ] = new Button(x,y, width,height, color, fun);
 	};
 
 	// this.addButton = function(name, x,y, width,height, function, color){

@@ -15,7 +15,9 @@ function Eventhandler( dom ) {
 				if( type == "mouseup" ){ game.selectObjects();game.selector.closeSelect() }; }, 
 			"mouseup" ),
 		3 : new Mouse(
-			function(){ game.targetObjects( _this.mouse.x, _this.mouse.y ); }
+			function(){ 
+				game.targetObjects( _this.mouse.x, _this.mouse.y );
+				 }
 			)
 	}
 	// ---------------------------------------------------------------------------

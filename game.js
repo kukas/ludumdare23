@@ -8,7 +8,11 @@ function Game(canvas){
 
 	// this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","rgba(32,32,32,1)");
 	this.gui.addRectangle("lista",0,480-40, 800,40,"#222");
-	this.gui.addText("resources","Carbon: 000   Nitrogen: 000   Oxygen: 000",620,464,"15px QuicksandLight","#aaa")
+	this.gui.addButton("action1",10,480-35, 60,30,"#bbb");
+	this.gui.addButton("action2",80,480-35, 60,30,"#bbb");
+	this.gui.addButton("action3",150,480-35, 60,30,"#bbb");
+	this.gui.addButton("action4",220,480-35, 60,30,"#bbb");
+	this.gui.addText("resources","Carbon: 000   Nitrogen: 000   Oxygen: 000",620,464,"15px QuicksandLight","#bbb")
 
 	this.colliding = function (o1,o2){
 		var vzd = (o1.x-o2.x)*(o1.x-o2.x)+(o1.y-o2.y)*(o1.y-o2.y);
@@ -17,6 +21,20 @@ function Game(canvas){
 		}
 		else{ return false; }
 	};
+	this.findCollisions = function( obj ){
+		for(var i = this.objects.length; i--; ){
+			var dx = obj.x - this.objects[i].x;
+			var dy = obj.y - this.objects[i].y;
+			var minLength = this.objects[i].radius+obj.radius;
+
+			if( obj == this.objects[i] ) continue
+
+			if( dx*dx + dy*dy < minLength*minLength ){
+				return this.objects[i];
+			}
+		}
+		return false;
+	}
 	this.inObjects = function(x,y){
 		for(var i = this.objects.length; i--; ){
 			var dx = x - this.objects[i].x;
@@ -35,7 +53,7 @@ function Game(canvas){
 	this.selected = [];
 
 	this.backgroundImg = new Image();
-	this.backgroundImg.src = "Assets/sum.png";
+	this.backgroundImg.src = "Assets/background1.png";
 	this.background = this.ctx.createPattern( this.backgroundImg, "repeat" );
 
 	this.debugCube = {x:0,y:0};
@@ -47,9 +65,9 @@ function Game(canvas){
 Game.prototype.render = function() {
 	
 	// this.ctx.clearRect( 0,0, this.width, this.height );
-	//this.ctx.drawImage(this.background, 0,0, this.width, this.height )
-	this.ctx.fillStyle = this.background;
-	this.ctx.fillRect( 0,0, this.width, this.height );
+	this.ctx.drawImage(this.backgroundImg, 0,0, this.width, this.height )
+	// this.ctx.fillStyle = this.background;
+	// this.ctx.fillRect( 0,0, this.width, this.height );
 
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].render( this.ctx);
@@ -90,10 +108,6 @@ Game.prototype.selectObjects = function() {
 };
 
 Game.prototype.targetObjects = function(x,y) {
-	// for(var i=this.selected.length; i--;){
-	// 	this.selected[i].setTarget(x,y);
-	// 	this.selected[i].goToTarget()
-	// }
 	for(var i = this.objects.length; i--; ){
 		if(this.objects[i].selected){
 			this.objects[i].setTarget(x,y);

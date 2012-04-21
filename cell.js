@@ -5,15 +5,15 @@ function Cell(x,y){
 	this.speed = 1;
 
 	this.background = new Image();
-	this.background.src = "Assets/bunka-pozadi.png";
+	this.background.src = "Assets/plasma.png";
 
 	this.vector = { x:0,y:0 };
 
 	this.organely = {
 		jadro : { x:0, y:0,distance:0, width:30, height:30, src:"Assets/nucleus.png" },
-		mitochondrie1 : { distance:70, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
-		mitochondrie2 : { distance:60, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
-		mitochondrie3 : { distance:80, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie1 : { distance:70, angle:Math.random()*Math.PI*2, speed:Math.random()/100, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie2 : { distance:60, angle:Math.random()*Math.PI*2, speed:Math.random()/100, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie3 : { distance:80, angle:Math.random()*Math.PI*2, speed:Math.random()/100, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
 
 		// retikulum : { x:0, y:55,distance:20, width:30, height:30 },
 	};
@@ -44,10 +44,11 @@ function Cell(x,y){
 		//ctx.strokeRect(this.x, this.y, 10,10);
 		var b = ctx.createPattern( this.background, "repeat" );
 		ctx.fillStyle = b;
+		ctx.strokeStyle = "#222";
 		ctx.beginPath();
 		ctx.arc(this.x, this.y, this.radius	, 0, Math.PI*2);
 		ctx.fill();
-		//ctx.stroke();
+		ctx.stroke();
 		ctx.closePath();
 		if(this.selected) ctx.fillStyle = "green";
 		else ctx.fillStyle = "red";
@@ -72,7 +73,7 @@ function Cell(x,y){
 	this.moveOrganely = function(){
 		for(var i in this.organely){
 			if( this.organely[i].distance !== undefined && this.organely[i].angle !== undefined ){
-				this.organely[i].angle+=Math.PI/1800;
+				this.organely[i].angle += this.organely[i].speed;
 				//this.organely[i].distance+=(Math.random()-0.5);
 				this.organely[i].x = Math.sin( this.organely[i].angle )*this.organely[i].distance
 				this.organely[i].y = Math.cos( this.organely[i].angle )*this.organely[i].distance
@@ -82,6 +83,8 @@ function Cell(x,y){
 	this.tick = function(){
 		this.goToTarget();
 		this.move();
+
+
 
 		this.moveOrganely();
 	}
