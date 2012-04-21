@@ -7,6 +7,7 @@ function Cell(x,y){
 
 	this.organely = {
 		jadro : {  }
+		mitochondrie : {  }
 	};
 	this.render = function(ctx){
 		ctx.strokeRect(this.x, this.y, 10,10);
