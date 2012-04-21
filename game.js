@@ -15,12 +15,25 @@ function Game(canvas){
 		}
 		else{ return false; }
 	};
+
+	function Selector(){
+		this.rectangle = {
+			x:0,
+			y:0,
+			width:0,
+			height:0
+		};
+		this.render = function(){
+			if(this.selectRectangle.width !== 0 && this.selectRectangle.height !== 0)
+				this.ctx.strokeRect( this.selectRectangle.x,this.selectRectangle.y,this.selectRectangle.width,this.selectRectangle.height );
+		};
+	}
+
+	this.selector = new Selector();
 	
 	this.camera = {x:0,y:0};
 
-	this.objects = [ new Miner(300, 100), new Cell(100,100) ];
-
-	this.selectRectangle = { x:0,y:0,width:0,height:0 };
+	this.objects = [ new Cell(100,100) ];
 
 	this.selected = [];
 
@@ -42,9 +55,6 @@ Game.prototype.render = function() {
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].render( this.ctx);
 	}
-
-	if(this.selectRectangle.width !== 0 && this.selectRectangle.height !== 0)
-		this.ctx.strokeRect( this.selectRectangle.x,this.selectRectangle.y,this.selectRectangle.width,this.selectRectangle.height );
 
 	this.gui.render();
 	

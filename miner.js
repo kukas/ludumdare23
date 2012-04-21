@@ -8,7 +8,7 @@ function Miner (x_c,y_c) {
 	this.maxvec=1;
 	this.texture=new Image();
 	this.texture.src="./Assets/miner.bmp";
-	this.target=false;
+	this.target = { x:0, y:0 };
 	this.render = function (ctx) {
 		this.move();
 		ctx.save();
@@ -20,7 +20,7 @@ function Miner (x_c,y_c) {
 	};
 	this.tick = function (){
 		this.setTarget(game.objects[1].x,game.objects[1].y);
-		this.goToTarget(game.objects[1].x,game.objects[1].y);
+		this.goToTarget();
 	};
 };
 Miner.prototype = new Object2D();
