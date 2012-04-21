@@ -30,15 +30,6 @@ function Game(canvas){
 		this.moveSelect = function(x,y){
 			this.rectangle.width = x - this.rectangle.x;
 			this.rectangle.height = y - this.rectangle.y;
-
-			if( this.rectangle.width < 0 ){
-				this.rectangle.width = -this.rectangle.width;
-				this.rectangle.x -= this.rectangle.width;
-			}
-			if( this.rectangle.height < 0 ){
-				//this.rectangle.height = -this.rectangle.height;
-				this.rectangle.y = y;
-			}
 		};
 		this.closeSelect = function(){
 			this.rectangle = {
@@ -49,6 +40,15 @@ function Game(canvas){
 			};
 		}
 		this.inSelection = function(x,y){
+			if( this.rectangle.width < 0 ){
+				this.rectangle.x += this.rectangle.width;
+				this.rectangle.width = -this.rectangle.width;
+			}
+			if( this.rectangle.height < 0 ){
+				this.rectangle.y += this.rectangle.height;
+				this.rectangle.height = -this.rectangle.height;
+			}
+
 			return this.rectangle.x < x && this.rectangle.x+this.rectangle.width > x &&	this.rectangle.y < y && this.rectangle.y+this.rectangle.height > y;
 		}
 		this.render = function(ctx){
