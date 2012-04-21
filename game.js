@@ -23,9 +23,32 @@ function Game(canvas){
 			width:0,
 			height:0
 		};
-		this.render = function(){
-			if(this.selectRectangle.width !== 0 && this.selectRectangle.height !== 0)
-				this.ctx.strokeRect( this.selectRectangle.x,this.selectRectangle.y,this.selectRectangle.width,this.selectRectangle.height );
+		this.beginSelect = function(x,y){
+			this.rectangle.x = x;
+			this.rectangle.y = y;
+		};
+		this.moveSelect = function(x,y){
+			this.rectangle.width = x - this.rectangle.x;
+			this.rectangle.height = y - this.rectangle.y;
+		};
+		this.closeSelect = function(){
+			this.rectangle = {
+				x:0,
+				y:0,
+				width:0,
+				height:0
+			};
+		}
+		this.inSelection = function(x,y){
+			return this.rectangle.x < x && this.rectangle.x+this.rectangle.width > x &&	this.rectangle.y < y && this.rectangle.y+this.rectangle.height > y;
+		}
+		this.render = function(ctx){
+			if(this.rectangle.width !== 0 && this.rectangle.height !== 0){
+				ctx.fillStyle = "rgba(20,20,120,0.1)";
+				ctx.fillRect( this.rectangle.x,this.rectangle.y,this.rectangle.width,this.rectangle.height );
+				ctx.strokeStyle = "rgba(20,20,120,1)";
+				ctx.strokeRect( this.rectangle.x,this.rectangle.y,this.rectangle.width,this.rectangle.height );
+			}
 		};
 	}
 
@@ -57,6 +80,8 @@ Game.prototype.render = function() {
 	}
 
 	this.gui.render();
+
+	this.selector.render(this.ctx)
 	
 };
 
@@ -76,8 +101,7 @@ Game.prototype.selectObjects = function() {
 	for(var i = this.objects.length; i--; ){
 		var x = this.objects[i].x;
 		var y = this.objects[i].y;
-		if( this.selectRectangle.x < x && this.selectRectangle.x+this.selectRectangle.width > x &&
-			this.selectRectangle.y < y && this.selectRectangle.y+this.selectRectangle.height > y ){
+		if( this.selector.inSelection(x,y) ){
 			this.objects[i].selected = true;
 			this.selected.push( this.objects[i] );
 		}
