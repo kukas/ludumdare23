@@ -17,16 +17,20 @@ function Game(canvas){
 
 	this.selected = [];
 
+	this.background = new Image();
+	this.background.src = "Assets/image.png";
+
 	var _this = this;
 
 	setInterval( function(){ _this.render(); _this.tick(); }, 1000/60 );
 }
 Game.prototype.render = function() {
 	
-	this.ctx.clearRect( 0,0, this.width, this.height );
+	// this.ctx.clearRect( 0,0, this.width, this.height );
+	this.ctx.drawImage(this.background, 0,0, this.width, this.height )
 
 	for(var i = this.objects.length; i--; ){
-		this.objects[i].render( this.ctx );
+		this.objects[i].render( this.ctx);
 	}
 
 	if(this.selectRectangle.width !== 0 && this.selectRectangle.height !== 0)
