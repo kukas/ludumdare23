@@ -7,7 +7,7 @@ function Eventhandler( dom ) {
 	// 1 = levé tl, 2 = prostřední, 3 = pravé, 0 = pohyb
 	// new Key( funkce_mousedown, funkce_mouseup, true=koná mousedown dokud je tlačítko stisknuté false=vykoná jednou )
 	this.mouseControls = {
-		1 : new Mouse( function(){ console.log("levé myšítko") } ),
+		1 : new Mouse( function(){  } ),
 		2 : new Mouse( function(){ console.log("prostř myšítko") } ),
 		3 : new Mouse( function(){ console.log("pravé myšítko") } ),
 	}

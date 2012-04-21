@@ -11,11 +11,11 @@ function Game(canvas){
 
 	this.camera = {x:0,y:0};
 
-	this.objects = [ new Cell(10,10) ];
+	this.objects = [new Miner(100,100)];
 
 	var _this = this;
-
-	setInterval( function(){ _this.render(); _this.tick(); }, 1000/60 );
+	
+	setInterval( function(){_this.render()}, 1000/60 );
 }
 Game.prototype.render = function() {
 	
@@ -23,13 +23,8 @@ Game.prototype.render = function() {
 
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].render( this.ctx );
+		this.objects[i].tick();
 	}
 
 	this.gui.render();
-};
-
-Game.prototype.tick = function() {
-	for(var i = this.objects.length; i--; ){
-		this.objects[i].tick();
-	}
 };

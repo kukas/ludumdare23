@@ -6,7 +6,7 @@ function Cell(x,y){
 	this.vector = { x:1,y:0 };
 
 	this.organely = {
-		jadro : {  }
+		jadro : {  },
 		mitochondrie : {  }
 	};
 	this.render = function(ctx){
