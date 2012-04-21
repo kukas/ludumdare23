@@ -1,9 +1,9 @@
-function Miner (x_c,y_c) {
+function Miner (x_c,y_c,src,health) {
 	
 	this.x=x_c;
 	this.y=y_c;
 	
-	this.health=20;
+	this.health=health;
 	this.proces=false;
 	
 	this.width=130;
@@ -13,7 +13,7 @@ function Miner (x_c,y_c) {
 	this.rotation=0;
 	
 	this.texture=new Image();
-	this.texture.src="./Assets/genetic enginner.png";
+	this.texture.src=src;
 	
 	this.target = { x:0, y:0 };
 	
