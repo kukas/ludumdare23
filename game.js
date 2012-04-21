@@ -11,7 +11,7 @@ function Game(canvas){
 
 	this.camera = {x:0,y:0};
 
-	this.objects = [];
+	this.objects = [ new Cell() ];
 
 	var _this = this;
 
