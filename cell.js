@@ -2,6 +2,8 @@ function Cell(x,y){
 	this.x = x;
 	this.y = y;
 
+	this.speed = 1;
+
 	this.background = new Image();
 	this.background.src = "Assets/bunka-pozadi.png";
 
@@ -13,7 +15,7 @@ function Cell(x,y){
 		mitochondrie2 : { distance:60, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
 		mitochondrie3 : { distance:80, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
 
-		retikulum : { x:0, y:55,distance:20, width:30, height:30 },
+		// retikulum : { x:0, y:55,distance:20, width:30, height:30 },
 	};
 
 	var max = 0;
@@ -56,6 +58,16 @@ function Cell(x,y){
 			else ctx.fillRect(this.organely[i].x - this.organely[i].width/2, this.organely[i].y - this.organely[i].height/2, this.organely[i].width,this.organely[i].height);
 		}
 		ctx.restore();
+
+		if(this.selected){
+			ctx.strokeStyle = "rgb(20,20,120)";
+			ctx.fillStyle = "rgba(20,20,120,0.2)";
+			ctx.beginPath();
+			ctx.arc(this.x,this.y,this.radius+5, 0, Math.PI*2);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath()
+		}
 	};
 	this.moveOrganely = function(){
 		for(var i in this.organely){
