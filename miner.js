@@ -5,29 +5,57 @@ function Miner (x_c,y_c) {
 	this.proces=false;
 	this.width=20;
 	this.height=20;
-	this.maxvec=10;
+	this.maxvec=1;
 	this.texture=new Image();
 	this.texture.src="./Assets/miner.bmp";
 	this.target=0;
 	this.mine = function (obj){
 		if(obj){
-			if(this.x==obj.x || this.y==obj.y){
+			if(obj.x==this.x && obj.y==this.y){
 				this.vector={x:0,y:0};
 			}
-			else{
-			this.x-obj.x > 0 ? this.vector.x-=this.maxvec : (this.x-obj.x==0 ? this.vector.x=0 : this.vector.x+=this.maxvec);
-			this.y-obj.y > 0 ? this.vector.y-=this.maxvec : (this.y-obj.y==0 ? this.vector.y=0 : this.vector.y+=this.maxvec);
-			};
+			if(obj.x==this.x && obj.y!=this.y){
+				if(obj.y-this.y > 0){
+					this.vector.y=this.maxvec;
+				}
+				if(obj.y-this.y < 0){
+					this.vector.y=-this.maxvec;
+				}
+			}
+			if(obj.x!=this.x && obj.y == this.y){
+				if(obj.x-this.x > 0){
+					this.vector.x=this.maxvec;
+				}
+				if(obj.x-this.x < 0){
+					this.vector.x=-this.maxvec;
+				}
+			}
+			else if(obj.x!=this.x && obj.y!= this.y){
+				if(obj.x-this.x > 0){
+					this.vector.x=this.maxvec;
+				}
+				if(obj.x-this.x < 0){
+					this.vector.x=-this.maxvec;
+				}
+				if(obj.y-this.y > 0){
+					this.vector.y=this.maxvec;
+				}
+				if(obj.y-this.y < 0){
+					this.vector.y=-this.maxvec;
+				}
+			}
 		}
 		else{ return false; }
 	};
 	this.render = function (ctx) {
 		this.move();
-		ctx.drawImage(this.texture, this.x,this.y,this.width,this.height)
+		ctx.drawImage(this.texture, this.x,this.y,this.width,this.height);
+		
 	};
 	this.tick = function (){
+		this.target={x:game.objects[0].x,y:game.objects[0].y};
 		if(this.target){
-			this.goToTarget();
+			this.mine(this.target);
 		}
 	};
 };

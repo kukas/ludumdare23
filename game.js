@@ -11,7 +11,9 @@ function Game(canvas){
 
 	this.camera = {x:0,y:0};
 
-	this.objects = [ new Cell(10,10) ];
+	min=new Miner(100,100);
+	cel=new Cell(10,10);
+	this.objects = [ cel , min];
 
 	this.selectRectangle = { x:0,y:0,width:0,height:0 };
 

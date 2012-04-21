@@ -2,7 +2,7 @@ function Cell(x,y){
 	this.x = x;
 	this.y = y;
 
-	this.vector = { x:0.3,y:0.3 };
+	this.vector = { x:0.5,y:0 };
 
 	this.organely = {
 		jadro : {  },
