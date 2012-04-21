@@ -2,6 +2,8 @@ function Object2D(){
 	this.x = 0;
 	this.y = 0;
 
+	this.selected = false;
+
 	this.vector = { x : 0, y : 0 };
 }
 
