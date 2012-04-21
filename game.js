@@ -6,64 +6,29 @@ function Game(canvas){
 
 	this.gui = new GUI( this.ctx );
 
-	this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","rgba(32,32,32,1)");
+	// this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","rgba(32,32,32,1)");
+	this.gui.addRectangle("lista",0,480-40, 800,40,"#222");
+	this.gui.addText("resources","Carbon: 000   Nitrogen: 000   Oxygen: 000",620,464,"15px QuicksandLight","#aaa")
 
 	this.colliding = function (o1,o2){
-		var vzd = (o1.x-o2.x+2)*(o1.x-o2.x+2)+(o1.y-o2.y)*(o1.y-o2.y);
+		var vzd = (o1.x-o2.x)*(o1.x-o2.x)+(o1.y-o2.y)*(o1.y-o2.y);
 		if(vzd <= (o1.radius+o2.radius)*(o1.radius+o2.radius)){
 			return true;
 		}
 		else{ return false; }
 	};
-
-	function Selector(){
-		this.rectangle = {
-			x:0,
-			y:0,
-			width:0,
-			height:0
-		};
-		this.beginSelect = function(x,y){
-			this.rectangle.x = x;
-			this.rectangle.y = y;
-		};
-		this.moveSelect = function(x,y){
-			this.rectangle.width = x - this.rectangle.x;
-			this.rectangle.height = y - this.rectangle.y;
-
-			if( this.rectangle.width < 0 ){
-				this.rectangle.width = -this.rectangle.width;
-				this.rectangle.x -= this.rectangle.width;
+	this.inObjects = function(x,y){
+		for(var i = this.objects.length; i--; ){
+			var dx = x - this.objects[i].x;
+			var dy = y - this.objects[i].y;
+			if( dx*dx + dy*dy < this.objects[i].radius*this.objects[i].radius ){
+				return true;
 			}
-			if( this.rectangle.height < 0 ){
-				//this.rectangle.height = -this.rectangle.height;
-				this.rectangle.y = y;
-			}
-		};
-		this.closeSelect = function(){
-			this.rectangle = {
-				x:0,
-				y:0,
-				width:0,
-				height:0
-			};
 		}
-		this.inSelection = function(x,y){
-			return this.rectangle.x < x && this.rectangle.x+this.rectangle.width > x &&	this.rectangle.y < y && this.rectangle.y+this.rectangle.height > y;
-		}
-		this.render = function(ctx){
-			if(this.rectangle.width !== 0 && this.rectangle.height !== 0){
-				ctx.fillStyle = "rgba(20,20,120,0.1)";
-				ctx.fillRect( this.rectangle.x,this.rectangle.y,this.rectangle.width,this.rectangle.height );
-				ctx.strokeStyle = "rgba(20,20,120,1)";
-				ctx.strokeRect( this.rectangle.x,this.rectangle.y,this.rectangle.width,this.rectangle.height );
-			}
-		};
+		return false;
 	}
 
 	this.selector = new Selector();
-	
-	this.camera = {x:0,y:0};
 
 	this.level=new Level();
 	this.init_level = function (id){
@@ -72,13 +37,15 @@ function Game(canvas){
 		};
 	};
 	
-	this.objects = [  ];
+	this.objects = [ new Cell(100,100),new Cell(300,100),new Cell(100,300) ];
 
 	this.selected = [];
 
 	this.backgroundImg = new Image();
 	this.backgroundImg.src = "Assets/sum.png";
 	this.background = this.ctx.createPattern( this.backgroundImg, "repeat" );
+
+	this.debugCube = {x:0,y:0};
 
 	var _this = this;
 
@@ -98,6 +65,9 @@ Game.prototype.render = function() {
 	this.gui.render();
 
 	this.selector.render(this.ctx)
+
+	this.ctx.fillStyle = "#00FF00";
+	this.ctx.fillRect(this.debugCube.x-5,this.debugCube.y-5,10,10);
 	
 };
 
@@ -127,8 +97,14 @@ Game.prototype.selectObjects = function() {
 };
 
 Game.prototype.targetObjects = function(x,y) {
-	for(var i=this.selected.length; i--;){
-		this.selected[i].setTarget(x,y);
-		this.selected[i].goToTarget()
+	// for(var i=this.selected.length; i--;){
+	// 	this.selected[i].setTarget(x,y);
+	// 	this.selected[i].goToTarget()
+	// }
+	for(var i = this.objects.length; i--; ){
+		if(this.objects[i].selected){
+			this.objects[i].setTarget(x,y);
+			this.objects[i].goToTarget();
+		}
 	}
 };
