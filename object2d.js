@@ -22,7 +22,6 @@ Object2D.prototype.accelerate = function(vec) {
 Object2D.prototype.goToTarget = function() {
 	this.vector.x = ( - this.x + this.target.x)/100;
 	this.vector.y = ( - this.y + this.target.y)/100;
-
 };
 
 Object2D.prototype.setTarget = function(x,y) {

@@ -6,7 +6,7 @@ function Game(canvas){
 
 	this.gui = new GUI( this.ctx );
 
-	this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt sans-serif","rgb(255,0,0)");
+	this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","#222");
 
 
 	this.camera = {x:0,y:0};
@@ -17,8 +17,9 @@ function Game(canvas){
 
 	this.selected = [];
 
-	this.background = new Image();
-	this.background.src = "Assets/image.png";
+	this.backgroundImg = new Image();
+	this.backgroundImg.src = "Assets/sum.png";
+	this.background = this.ctx.createPattern( this.backgroundImg, "repeat" );
 
 	var _this = this;
 
@@ -27,7 +28,9 @@ function Game(canvas){
 Game.prototype.render = function() {
 	
 	// this.ctx.clearRect( 0,0, this.width, this.height );
-	this.ctx.drawImage(this.background, 0,0, this.width, this.height )
+	//this.ctx.drawImage(this.background, 0,0, this.width, this.height )
+	this.ctx.fillStyle = this.background;
+	this.ctx.fillRect( 0,0, this.width, this.height );
 
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].render( this.ctx);

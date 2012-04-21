@@ -8,7 +8,7 @@ function Miner (x_c,y_c) {
 	this.maxvec=1;
 	this.texture=new Image();
 	this.texture.src="./Assets/miner.bmp";
-	this.target=0;
+	this.target=false;
 	this.mine = function (obj){
 		if(obj){
 			if(obj.x==this.x && obj.y==this.y){
