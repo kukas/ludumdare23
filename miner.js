@@ -53,7 +53,7 @@ function Miner (x_c,y_c) {
 		
 	};
 	this.tick = function (){
-		this.target={x:game.objects[0].x,y:game.objects[0].y};
+		this.target=false;
 		if(this.target){
 			this.mine(this.target);
 		}
