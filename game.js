@@ -6,7 +6,7 @@ function Game(canvas){
 
 	this.gui = new GUI( this.ctx );
 
-	this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","#222");
+	this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","rgba(32,32,32,1)");
 
 	this.colliding = function (o1,o2){
 		var vzd = (o1.x-o2.x)*(o1.x-o2.x)+(o1.y-o2.y)*(o1.y-o2.y);
@@ -30,6 +30,15 @@ function Game(canvas){
 		this.moveSelect = function(x,y){
 			this.rectangle.width = x - this.rectangle.x;
 			this.rectangle.height = y - this.rectangle.y;
+
+			if( this.rectangle.width < 0 ){
+				this.rectangle.width = -this.rectangle.width;
+				this.rectangle.x -= this.rectangle.width;
+			}
+			if( this.rectangle.height < 0 ){
+				//this.rectangle.height = -this.rectangle.height;
+				this.rectangle.y = y;
+			}
 		};
 		this.closeSelect = function(){
 			this.rectangle = {

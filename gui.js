@@ -14,8 +14,19 @@ function GUI(ctx){
 			ctx.font = this.font;
 			ctx.fillText(this.text, this.x - ctx.measureText(this.text).width/2, this.y);
 		};
+	}
+	function Rectangle(x,y,width,height,color){
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 
+		this.color = color
 
+		this.draw = function( ctx ){
+			ctx.fillStyle = color;
+			ctx.fillRect( this.x, this.y, this.width, this.height );
+		}
 	}
 
 	this.addText = function(name, text, x,y, font, color){

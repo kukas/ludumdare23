@@ -61,7 +61,7 @@ function Cell(x,y){
 	this.moveOrganely = function(){
 		for(var i in this.organely){
 			if( this.organely[i].distance !== undefined && this.organely[i].angle !== undefined ){
-				this.organely[i].angle+=Math.PI/180;
+				this.organely[i].angle+=Math.PI/1800;
 				//this.organely[i].distance+=(Math.random()-0.5);
 				this.organely[i].x = Math.sin( this.organely[i].angle )*this.organely[i].distance
 				this.organely[i].y = Math.cos( this.organely[i].angle )*this.organely[i].distance
