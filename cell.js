@@ -30,7 +30,7 @@ function Cell(x,y){
 	this.load = function(){
 		for(i in this.organely){
 			this.organely[i].image = new Image();
-			this.organely[i].image.src = this.organely[i].src;
+			this.organely[i].src ? this.organely[i].image.src = this.organely[i].src : 1==1;
 		}
 	}
 
