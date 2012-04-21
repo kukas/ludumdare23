@@ -3,7 +3,7 @@ function Miner (x_c,y_c) {
 	this.y=y_c;
 	this.health=20;
 	this.proces=false;
-	this.width=20;
+	this.width=35;
 	this.height=20;
 	this.maxvec=1;
 	this.texture=new Image();
