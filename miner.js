@@ -8,7 +8,7 @@ function Miner (x_c,y_c) {
 	this.maxvec=1;
 	this.texture=new Image();
 	this.texture.src="./Assets/miner.bmp";
-	this.target={x:0,y:0};
+	this.target = { x:0, y:0 };
 	this.render = function (ctx) {
 		this.move();
 		ctx.save();
@@ -18,15 +18,9 @@ function Miner (x_c,y_c) {
 		ctx.restore();
 		
 	};
-	this.kolize=[];
 	this.tick = function (){
-		for(i in game.objects){
-			if(game.objects[i] && game.objects[i] != this){
-				if(game.colliding(this, game.objects[i])){
-					this.kolize[i]=game.objects[i];
-				}
-			}
-		};
+		this.setTarget(game.objects[1].x,game.objects[1].y);
+		this.goToTarget();
 	};
 };
 Miner.prototype = new Object2D();

@@ -8,7 +8,7 @@ function Object2D(){
 	this.selected = false;
 
 	this.target = { x : 0, y : 0 };
-	this.speed = 10; // px
+	this.speed = 5; // px
 
 	this.vector = { x : 0, y : 0 };
 
@@ -28,16 +28,11 @@ Object2D.prototype.accelerate = function(vec) {
 Object2D.prototype.goToTarget = function() {
 	dx = this.target.x - this.x;
 	dy = this.target.y - this.y;
-	console.log([dx,this.target.x])
-	if( dx*dx + dy*dy >= this.speed*this.speed ){
+	if( dx*dx + dy*dy > this.speed*this.speed ){
 		var a = Math.atan(dx/dy);
 		this.vector.x = Math.sin(a)*this.speed;
 		this.vector.y = Math.cos(a)*this.speed;
 	}
-	else {
-		console.log("dffas")
-	}
-
 };
 
 Object2D.prototype.setTarget = function(x,y) {

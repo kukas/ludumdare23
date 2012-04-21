@@ -9,11 +9,11 @@ function Cell(x,y){
 
 	this.organely = {
 		jadro : { x:0, y:0,distance:0, width:30, height:30, src:"Assets/nucleus.png" },
-		mitochondrie1 : { distance:40, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10 , src:"Assets/mit.png"},
-		mitochondrie2 : { distance:35, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10 , src:"Assets/mit.png" },
-		mitochondrie3 : { distance:45, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10 , src:"Assets/mit.png" },
+		mitochondrie1 : { distance:70, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie2 : { distance:60, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie3 : { distance:80, angle:Math.random()*Math.PI*2, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
 
-		retikulum : { x:0, y:20,distance:20, width:30, height:30 },
+		retikulum : { x:0, y:55,distance:20, width:30, height:30 },
 	};
 
 	var max = 0;
@@ -23,14 +23,17 @@ function Cell(x,y){
 			max = d;
 		}
 	}
+	console.log(max)
 	this.radius = max;
 	this.width=2*this.radius;
 	this.height=2*this.radius;
 
 	this.load = function(){
 		for(i in this.organely){
-			this.organely[i].image = new Image();
-			this.organely[i].src ? this.organely[i].image.src = this.organely[i].src : 1==1;
+			if(this.organely[i].src){
+				this.organely[i].image = new Image();
+				this.organely[i].image.src = this.organely[i].src;
+			}
 		}
 	}
 
@@ -50,15 +53,15 @@ function Cell(x,y){
 		ctx.save();
 		ctx.translate(this.x,this.y);
 		for(var i in this.organely){
-			//ctx.fillRect(this.organely[i].x - this.organely[i].width/2, this.organely[i].y - this.organely[i].height/2, this.organely[i].width,this.organely[i].height);
 			if(this.organely[i].image) ctx.drawImage(this.organely[i].image,this.organely[i].x - this.organely[i].image.width/2, this.organely[i].y - this.organely[i].image.height/2)
+			else ctx.fillRect(this.organely[i].x - this.organely[i].width/2, this.organely[i].y - this.organely[i].height/2, this.organely[i].width,this.organely[i].height);
 		}
 		ctx.restore();
 	};
 	this.moveOrganely = function(){
 		for(var i in this.organely){
 			if( this.organely[i].distance !== undefined && this.organely[i].angle !== undefined ){
-				this.organely[i].angle+=Math.PI/180;
+				this.organely[i].angle+=Math.PI/1800;
 				//this.organely[i].distance+=(Math.random()-0.5);
 				this.organely[i].x = Math.sin( this.organely[i].angle )*this.organely[i].distance
 				this.organely[i].y = Math.cos( this.organely[i].angle )*this.organely[i].distance
