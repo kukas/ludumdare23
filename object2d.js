@@ -3,7 +3,7 @@ function Object2D(){
 	this.y = 0;
 	this.width=0;
 	this.height=0;
-	this.radius=Math.sqrt(this.width^2+this.height^2)/2;
+	this.radius=Math.sqrt(this.width*this.height+this.height*this.height)/2;
 
 	this.selected = false;
 

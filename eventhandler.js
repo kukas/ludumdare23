@@ -4,6 +4,10 @@ function Eventhandler( dom ) {
 	// keycode : new Key( funkce_keydown, funkce_keyup, true=koná keydown dokud je klávesa stisknutá false=vykoná jednou )
 	this.controls = {
 		32 : new Key( function(){ console.log("mezerník") }, false, "keydown" ),
+		73 : new Key ( function (){ game.objects[1].vector={x:0,y:0};game.objects[1].vector.y--; }),
+		74 : new Key ( function (){ game.objects[1].vector={x:0,y:0};game.objects[1].vector.x--; }),
+		75 : new Key ( function (){ game.objects[1].vector={x:0,y:0};game.objects[1].vector.y++; }),
+		76 : new Key ( function (){ game.objects[1].vector={x:0,y:0};game.objects[1].vector.x++; }),
 	};
 	// 1 = levé tl, 2 = prostřední, 3 = pravé, 0 = pohyb
 	// new Key( funkce_mousedown, funkce_mouseup, true=koná mousedown dokud je tlačítko stisknuté false=vykoná jednou )

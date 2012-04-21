@@ -9,7 +9,7 @@ function Game(canvas){
 	this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","rgba(32,32,32,1)");
 
 	this.colliding = function (o1,o2){
-		var vzd = (o1.x-o2.x)*(o1.x-o2.x)+(o1.y-o2.y)*(o1.y-o2.y);
+		var vzd = (o1.x-o2.x+2)*(o1.x-o2.x+2)+(o1.y-o2.y)*(o1.y-o2.y);
 		if(vzd <= (o1.radius+o2.radius)*(o1.radius+o2.radius)){
 			return true;
 		}
