@@ -47,6 +47,13 @@ function Game(canvas){
 	}
 
 	this.selector = new Selector();
+
+	this.level=new Level();
+	this.init_level = function (id){
+		for(i in this.level[id]){
+			this.objects[i]=this.level[id][i];
+		};
+	};
 	
 	this.objects = [ new Cell(100,100),new Cell(300,100),new Cell(100,300) ];
 
