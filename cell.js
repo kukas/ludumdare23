@@ -5,7 +5,7 @@ function Cell(x,y){
 	this.background = new Image();
 	this.background.src = "Assets/bunka-pozadi.png";
 
-	this.vector = { x:0.3,y:0.3 };
+	this.vector = { x:0,y:0 };
 
 	this.organely = {
 		jadro : { x:0, y:0,distance:0, width:30, height:30, src:"Assets/nucleus.png" },
@@ -25,8 +25,8 @@ function Cell(x,y){
 	}
 	console.log(max)
 	this.radius = max;
-	this.width=this.radius;
-	this.height=this.radius;
+	this.width=2*this.radius;
+	this.height=2*this.radius;
 
 	this.load = function(){
 		for(i in this.organely){

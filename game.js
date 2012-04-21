@@ -9,10 +9,11 @@ function Game(canvas){
 	this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","#222");
 
 	this.colliding = function (o1,o2){
-		if(Math.abs(o1.x-o2.x)-o1.width-o2.width < 0 || 0 > Math.abs(o1.y-o2.y)-o1.height-o2.height){
-			console.log(true);
+		var vzd = (o1.x-o2.x)*(o1.x-o2.x)+(o1.y-o2.y)*(o1.y-o2.y);
+		if(vzd <= (o1.radius+o2.radius)*(o1.radius+o2.radius)){
+			return true;
 		}
-		else{ console.log(false); }
+		else{ return false; }
 	};
 	
 	this.camera = {x:0,y:0};
@@ -46,12 +47,14 @@ Game.prototype.render = function() {
 		this.ctx.strokeRect( this.selectRectangle.x,this.selectRectangle.y,this.selectRectangle.width,this.selectRectangle.height );
 
 	this.gui.render();
+	
 };
 
 Game.prototype.tick = function() {
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].tick();
 	}
+	
 };
 
 Game.prototype.selectObjects = function() {
