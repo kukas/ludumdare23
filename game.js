@@ -8,7 +8,13 @@ function Game(canvas){
 
 	this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt sans-serif","rgb(255,0,0)");
 
-
+	this.colliding = function (o1,o2){
+		if(Math.abs(o1.x-o2.x)-o1.width-o2.width < 0 || 0 > Math.abs(o1.y-o2.y)-o1.height-o2.height){
+			console.log(true);
+		}
+		else{ console.log(false); }
+	};
+	
 	this.camera = {x:0,y:0};
 
 	this.objects = [ new Cell(100,100) ];

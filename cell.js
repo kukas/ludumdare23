@@ -24,7 +24,9 @@ function Cell(x,y){
 		}
 	}
 	console.log(max)
-	this.radius = max;	
+	this.radius = max;
+	this.width=this.radius;
+	this.height=this.radius;
 
 	this.render = function(ctx){
 		//ctx.strokeRect(this.x, this.y, 10,10);
