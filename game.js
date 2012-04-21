@@ -17,8 +17,14 @@ function Game(canvas){
 	};
 	
 	this.camera = {x:0,y:0};
+	
+	this.init_level = function (id){
+		for(i in level[id]){
+			this.objects[i]=level[id][i];
+		};
+	};
 
-	this.objects = [ new Miner(300, 100), new Cell(100,100) ];
+	this.objects = [  ];
 
 	this.selectRectangle = { x:0,y:0,width:0,height:0 };
 
