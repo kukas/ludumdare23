@@ -59,3 +59,10 @@ Game.prototype.selectObjects = function() {
 
 	this.selectRectangle = {x:0,y:0,width:0,height:0};
 };
+
+Game.prototype.targetObjects = function(x,y) {
+	for(var i=this.selected.length; i--;){
+		this.selected[i].setTarget(x,y);
+		this.selected[i].goToTarget()
+	}
+};

@@ -12,6 +12,9 @@ function Eventhandler( dom ) {
 			function(){ game.selectRectangle.x = _this.mouse.x; game.selectRectangle.y = _this.mouse.y; }, 
 			function( type ){ game.selectRectangle.width =  _this.mouse.x - game.selectRectangle.x; game.selectRectangle.height = _this.mouse.y - game.selectRectangle.y; if( type == "mouseup" ){game.selectObjects()}; }, 
 			"mouseup" ),
+		3 : new Mouse(
+			function(){ game.targetObjects( _this.mouse.x, _this.mouse.y ); }
+			)
 	}
 	// ---------------------------------------------------------------------------
 
