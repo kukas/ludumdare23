@@ -11,11 +11,11 @@ function Game(canvas){
 
 	this.camera = {x:0,y:0};
 
-	this.objects = [ new Cell() ];
+	this.objects = [ new Cell(10,10) ];
 
 	var _this = this;
 
-	setInterval( function(){_this.render()}, 1000/60 );
+	setInterval( function(){ _this.render(); _this.tick(); }, 1000/60 );
 }
 Game.prototype.render = function() {
 	
@@ -26,4 +26,10 @@ Game.prototype.render = function() {
 	}
 
 	this.gui.render();
+};
+
+Game.prototype.tick = function() {
+	for(var i = this.objects.length; i--; ){
+		this.objects[i].tick();
+	}
 };
