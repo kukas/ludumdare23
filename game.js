@@ -11,11 +11,15 @@ function Game(canvas){
 
 	this.camera = {x:0,y:0};
 
-	this.objects = [new Miner(100,100)];
+	this.objects = [ new Cell(10,10) ];
+
+	this.selectRectangle = { x:0,y:0,width:0,height:0 };
+
+	this.selected = [];
 
 	var _this = this;
-	
-	setInterval( function(){_this.render()}, 1000/60 );
+
+	setInterval( function(){ _this.render(); _this.tick(); }, 1000/60 );
 }
 Game.prototype.render = function() {
 	
@@ -23,8 +27,42 @@ Game.prototype.render = function() {
 
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].render( this.ctx );
-		this.objects[i].tick();
 	}
 
+	if(this.selectRectangle.width !== 0 && this.selectRectangle.height !== 0)
+		this.ctx.strokeRect( this.selectRectangle.x,this.selectRectangle.y,this.selectRectangle.width,this.selectRectangle.height );
+
 	this.gui.render();
+};
+
+Game.prototype.tick = function() {
+	for(var i = this.objects.length; i--; ){
+		this.objects[i].tick();
+	}
+};
+
+Game.prototype.selectObjects = function() {
+	for(var i=this.selected.length; i--;){
+		this.selected[i].selected = false;
+	}
+	this.selected = [];
+
+	for(var i = this.objects.length; i--; ){
+		var x = this.objects[i].x;
+		var y = this.objects[i].y;
+		if( this.selectRectangle.x < x && this.selectRectangle.x+this.selectRectangle.width > x &&
+			this.selectRectangle.y < y && this.selectRectangle.y+this.selectRectangle.height > y ){
+			this.objects[i].selected = true;
+			this.selected.push( this.objects[i] );
+		}
+	};
+
+	this.selectRectangle = {x:0,y:0,width:0,height:0};
+};
+
+Game.prototype.targetObjects = function(x,y) {
+	for(var i=this.selected.length; i--;){
+		this.selected[i].setTarget(x,y);
+		this.selected[i].goToTarget()
+	}
 };
