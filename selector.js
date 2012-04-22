@@ -3,7 +3,8 @@ function Selector(){
 		x:0,
 		y:0,
 		width:0,
-		height:0
+		height:0,
+		radius:Math.sqrt(this.width*this.width+this.height*this.height)
 	};
 
 	this.beginSelect = function(x,y){
