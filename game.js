@@ -5,14 +5,27 @@ function Game(canvas){
 	this.width = this.canvas.width = 800;
 	this.height = this.canvas.height = 480;
 
+	this.playground = {
+		width : 2000,
+		height : 800
+	};
+
 	this.gui = new GUI( this.ctx );
 
 	// this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","rgba(32,32,32,1)");
 	this.gui.addRectangle("lista",0,this.height-40, this.width,40,"#222");
-	this.gui.addButton("action1",10,this.height-35, 60,30,"#bbb");
-	this.gui.addButton("action2",80,this.height-35, 60,30,"#bbb");
-	this.gui.addButton("action3",150,this.height-35, 60,30,"#bbb");
-	this.gui.addButton("action4",220,this.height-35, 60,30,"#bbb");
+	this.gui.addButton("action1",10,this.height-35, 60,30,"Assets/tlacitko_kasarna.png","#d33",function(){
+		console.log("button 1");
+	});
+	this.gui.addButton("action2",80,this.height-35, 60,30,"Assets/tlacitko_tovarna.png","#d33",function(){
+		console.log("button 2");
+	});
+	this.gui.addButton("action3",150,this.height-35, 60,30,"Assets/tlacitko_kasarna.png","#d33",function(){
+		console.log("button 3");
+	});
+	this.gui.addButton("action4",220,this.height-35, 60,30,"Assets/tlacitko_kasarna.png","#d33",function(){
+		console.log("button 4");
+	});
 
 	this.gui.addText("carbon","Carbon:",430,this.height-16,"15px QuicksandLight","#bbb");
 	this.gui.addText("carbonValue", "000", 500,this.height -16,"15px QuicksandLight","#bbb");
@@ -28,6 +41,17 @@ function Game(canvas){
 		carbon:10,
 		nitrogen:20,
 		oxygen:5
+	}
+
+	this.camera = { 
+		x:0, 
+		y:0,
+		tX : function(x){
+			return this.x+x;
+		},
+		tY : function(y){
+			return this.y+y;
+		} 
 	}
 
 	this.objects = [];
@@ -55,15 +79,18 @@ function Game(canvas){
 }
 
 Game.prototype.render = function() {
-	this.drawResources();
-	// this.ctx.clearRect( 0,0, this.width, this.height );
 	this.ctx.drawImage(this.background, 0,0, this.width, this.height )
-	// this.ctx.fillStyle = this.background;
-	// this.ctx.fillRect( 0,0, this.width, this.height );
+	this.ctx.save();
+	this.ctx.translate(-this.camera.x,-this.camera.y);
+	this.drawResources();
+
+	this.ctx.strokeStyle = "black";
+	this.ctx.strokeRect(0,0,this.playground.width,this.playground.height)
 
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].render( this.ctx);
 	}
+	this.ctx.restore();
 
 	this.gui.render();
 

@@ -31,19 +31,29 @@ function GUI(ctx){
 			ctx.fillRect( this.x, this.y, this.width, this.height );
 		}
 	};
-	function Button(x,y,width,height,color,fun){
+	function Button(x,y,width,height,image,color,action){
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 
 		this.color = color;
-		this.function = fun;
+		this.image = new Image();
+		this.image.src = image;
+		this.action = action;
+
+		this.pressed = false;
 
 		this.draw = function( ctx ){
-			ctx.strokeStyle = color;
-			ctx.lineWidth = 1;
-			ctx.strokeRect( this.x, this.y, this.width, this.height );
+			if( this.pressed ){
+				ctx.drawImage( this.image, this.x, this.y );
+				ctx.strokeStyle = this.color;
+				ctx.lineWidth = 1;
+				ctx.strokeRect( this.x, this.y, this.width, this.height );
+			}
+			else {
+				ctx.drawImage( this.image, this.x, this.y );
+			}
 		}
 	};
 
@@ -60,13 +70,20 @@ function GUI(ctx){
 		this.rectangles[ name ] = new Rectangle(x,y, width,height, color);
 	};
 
-	this.addButton = function(name, x,y, width,height, color, fun){
-		this.buttons[ name ] = new Button(x,y, width,height, color, fun);
+	this.addButton = function(name, x,y, width,height, src,color, action){
+		this.buttons[ name ] = new Button(x,y, width,height, src, color, action);
 	};
 
-	// this.addButton = function(name, x,y, width,height, function, color){
-	// 	this.buttons[ name ] = new Button(x,y, width,height, color);
-	// };
+	this.press = function(x,y){
+		for( i in this.buttons ){
+			this.buttons[i].pressed = false;
+			if(x > this.buttons[i].x && y > this.buttons[i].y &&
+				x < this.buttons[i].x+this.buttons[i].width && y < this.buttons[i].y+this.buttons[i].height){
+				this.buttons[i].action();
+				this.buttons[i].pressed = true;
+			}
+		}
+	};
 
 	this.render = function(){
 		for(i in this.rectangles){
