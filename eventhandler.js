@@ -17,12 +17,12 @@ function Eventhandler( dom ) {
 				game.selector.beginSelect( _this.mouse.x, _this.mouse.y ); 
 			}, 
 			function( type ){ 
+				game.selectObjects();
+				game.selector.closeSelect() 
+			}, 
+			function( type ){ 
 				game.selector.moveSelect( _this.mouse.x, _this.mouse.y ); 
-				if( type == "mouseup" ){
-					game.selectObjects();
-					game.selector.closeSelect() 
-				}; 
-			}, "mouseup" ),
+			} ),
 		3 : new Mouse(
 			function(){ 
 				game.targetObjects( _this.mouse.x, _this.mouse.y );
@@ -99,12 +99,12 @@ Eventhandler.prototype.mousehandler = function(e) {
 Eventhandler.prototype.loop = function() {
 	for(k in this.controls){
 		if( this.controls[ k ].down && this.controls[ k ].continuous ){
-			this.controls[ k ][ this.controls[ k ].continuous ]();
+			this.controls[ k ].continuous();
 		}
 	}
 	for(m in this.mouseControls){
 		if( this.mouseControls[ m ].down && this.mouseControls[ m ].continuous ){
-			this.mouseControls[ m ][ this.mouseControls[ m ].continuous ]("loop");
+			this.mouseControls[ m ].continuous("loop");
 		}
 	}
 }

@@ -8,17 +8,28 @@ function Game(canvas){
 	this.gui = new GUI( this.ctx );
 
 	// this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","rgba(32,32,32,1)");
-	this.gui.addRectangle("lista",0,480-40, 800,40,"#222");
-	this.gui.addButton("action1",10,480-35, 60,30,"#bbb");
-	this.gui.addButton("action2",80,480-35, 60,30,"#bbb");
-	this.gui.addButton("action3",150,480-35, 60,30,"#bbb");
-	this.gui.addButton("action4",220,480-35, 60,30,"#bbb");
-	this.gui.addText("resources","Carbon: 000   Nitrogen: 000   Oxygen: 000",620,464,"15px QuicksandLight","#bbb")
+	this.gui.addRectangle("lista",0,this.height-40, this.width,40,"#222");
+	this.gui.addButton("action1",10,this.height-35, 60,30,"#bbb");
+	this.gui.addButton("action2",80,this.height-35, 60,30,"#bbb");
+	this.gui.addButton("action3",150,this.height-35, 60,30,"#bbb");
+	this.gui.addButton("action4",220,this.height-35, 60,30,"#bbb");
+
+	this.gui.addText("carbon","Carbon:",430,this.height-16,"15px QuicksandLight","#bbb");
+	this.gui.addText("carbonValue", "000", 500,this.height -16,"15px QuicksandLight","#bbb");
+	this.gui.addText("nitrogen","Nitrogen:",550,this.height-16,"15px QuicksandLight","#bbb");
+	this.gui.addText("nitrogenValue", "000", 630,this.height -16,"15px QuicksandLight","#bbb");
+	this.gui.addText("oxygen","Oxygen:",680,this.height-16,"15px QuicksandLight","#bbb");
+	this.gui.addText("oxygenValue", "000", 750,this.height -16,"15px QuicksandLight","#bbb");
 
 	this.selector = new Selector();
 	this.level;
 
-	
+	this.resources = {
+		carbon:10,
+		nitrogen:20,
+		oxygen:5
+	}
+
 	this.objects = [];
 
 	this.selected = [];
@@ -44,7 +55,7 @@ function Game(canvas){
 }
 
 Game.prototype.render = function() {
-	
+	this.drawResources();
 	// this.ctx.clearRect( 0,0, this.width, this.height );
 	this.ctx.drawImage(this.background, 0,0, this.width, this.height )
 	// this.ctx.fillStyle = this.background;
@@ -95,11 +106,16 @@ Game.prototype.inObjects = function(x,y){
 	return false;
 }
 
+Game.prototype.drawResources = function( obj ){
+	for(i in this.resources){
+		this.gui.changeText( i+"Value", ""+this.resources[i] );
+	}
+}
+
 Game.prototype.tick = function() {
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].tick();
 	}
-	
 };
 
 Game.prototype.clearSelected = function(){

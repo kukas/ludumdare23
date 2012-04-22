@@ -15,7 +15,7 @@ function GUI(ctx){
 		this.draw = function( ctx ){
 			ctx.fillStyle = this.color;
 			ctx.font = this.font;
-			ctx.fillText(this.text, this.x - ctx.measureText(this.text).width/2, this.y);
+			ctx.fillText(this.text, this.x, this.y);
 		};
 	};
 	function Rectangle(x,y,width,height,color){
@@ -50,6 +50,10 @@ function GUI(ctx){
 	this.addText = function(name, text, x,y, font, color){
 		font = font !== undefined ? font : "Arial 12pt";
 		this.texts[ name ] = new Text(text, x,y, font, color);
+	};
+	this.changeText = function(name, text){
+		if(!this.texts[ name ]) console.log("changeText -> neexistuje zadaný text")
+		this.texts[ name ].text = text;
 	};
 
 	this.addRectangle = function(name, x,y, width,height, color){
