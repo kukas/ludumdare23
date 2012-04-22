@@ -27,11 +27,12 @@ Object2D.prototype.move = function() {
 		
 		function preklopeni(vec,uhel){
 			var rad = Math.sqrt(vec.x*vec.x+vec.y*vec.y);
-		if(vec.x!=0){
-			var a=Math.atan(vec.y/vec.x);
-			uhel+=a;
-			vec.x=Math.cos(uhel)*rad;
-			vec.y=Math.sin(uhel)*rad;
+			if(vec.x!=0){
+				var a=Math.atan(vec.y/vec.x);
+				uhel+=a;
+				vec.x=Math.cos(uhel)*rad;
+				vec.y=Math.sin(uhel)*rad;
+			}
 		};
 		
 		if (c.y-this.vector.y>0){

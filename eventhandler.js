@@ -16,7 +16,7 @@ function Eventhandler( dom ) {
 				game.gui.press(_this.mouse.x, _this.mouse.y);
 			}, 
 			function( type ){
-				if(!game.selector.active){
+				if(game.selector.rectangle.width === 0 && game.selector.rectangle.height === 0){
 					if (_this.controls[17].down){
 						game.inObjects(_this.tmouse.x,_this.tmouse.y).selected=true;
 					}
@@ -44,6 +44,7 @@ function Eventhandler( dom ) {
 			} ),
 		3 : new Mouse(
 			function(){ 
+				console.log([game.camera.tX(_this.mouse.x), game.camera.tY(_this.mouse.y)])
 				game.targetObjects( game.camera.tX(_this.mouse.x), game.camera.tY(_this.mouse.y) );
 			}, false, function(){
 				game.camera.x = (game.playground.width-game.width)/game.width*_this.mouse.x;
