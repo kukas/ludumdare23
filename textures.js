@@ -18,5 +18,5 @@ function Textures(){
 		}
 	}
 
-	setInterval( function(){ _this.render(); _this.tick(); }, 1000/60 );
+	setInterval( function(){ game.render(); game.tick(); }, 1000/60 );
 }

@@ -6,8 +6,8 @@ function Game(canvas){
 	this.height = this.canvas.height = 480;
 
 	this.playground = {
-		width : 2000,
-		height : 800
+		width : 1000,
+		height : 600
 	};
 
 	this.gui = new GUI( this.ctx );

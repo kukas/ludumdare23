@@ -1,11 +1,9 @@
 function Nanobot() {
-	
 	this.proces=false;
 	
 	this.width=10;
 	this.height=10;
 	this.radius=20;
-	// this.radius=20;
 	this.rotation=0;
 
 	this.controls = [
