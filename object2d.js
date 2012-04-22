@@ -24,6 +24,44 @@ Object2D.prototype.move = function() {
 	if(c){
 		this.x -= this.vector.x;
 		this.y -= this.vector.y;
+		
+		function preklopeni(vec,uhel){
+			var rad = Math.sqrt(vec.x*vec.x+vec.y*vec.y);
+		if(vec.x!=0){
+			var a=Math.atan(vec.y/vec.x);
+			uhel+=a;
+			vec.x=Math.cos(uhel)*rad;
+			vec.y=Math.sin(uhel)*rad;
+		};
+		
+		if (c.y-this.vector.y>0){
+			preklopeni(this.vector,-Math.PI/2);
+		}
+		else{
+			preklopeni(this.vector,Math.PI/2);
+		}
+		
+		this.x += this.vector.x;
+		this.y += this.vector.y;
+		
+		/*if(this.vector.y > 0){
+			this.vector.x=this.vector.x*(Math.cos(this.radius/(this.radius+c.radius)));
+			this.vector.y=this.vector.y*(Math.sin(this.radius/(this.r
+				if(this.y > this.target.y){adius+c.radius)));
+			var a = Math.atan(this.vector.x/this.vector.y);
+					a += Math.PI;
+				}
+			this.rotation=a;
+			this.x += this.vector.x;
+			this.y += this.vector.y;
+		}
+		else if (this.vector.y == 0){
+			var b = Math.cos(c.radius/(c.radius.this.radius));
+			
+		}
+		else{
+			return false;
+		}*/
 	}
 };
 
@@ -34,8 +72,8 @@ Object2D.prototype.accelerate = function(vec) {
 
 Object2D.prototype.goToTarget = function() {
 	if(this.targeting){
-		dy = this.target.y - this.y;
-		dx = this.target.x - this.x;
+		var dy = this.target.y - this.y;
+		var dx = this.target.x - this.x;
 		if( dx*dx + dy*dy >= this.speed*this.speed ){
 			var a = Math.atan(dx/dy);
 			if(this.y > this.target.y){
