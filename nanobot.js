@@ -6,13 +6,19 @@ function Nanobot() {
 	this.radius=20;
 	this.rotation=0;
 
-	this.controls = [
-		"blabla"
-	]
-	
 	this.target = { x:0, y:0 };
 	
-	this.onCollision = function (){console.log("Kolize");};
+	this.changeMenu = function(){
+		for(i=0;i<4;i++){ // protože tlačítek je 4
+			if(this.menu[i]){
+				game.gui.buttons["action"+(i+1)].hidden = false;
+				game.gui.buttons["action"+(i+1)].image = this.menu[i].image;
+			}
+			else {
+				game.gui.buttons["action"+(i+1)].hidden = true;
+			}
+		}
+	}
 	
 	this.render = function (ctx) {
 		ctx.save();

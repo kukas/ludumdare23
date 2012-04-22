@@ -17,6 +17,7 @@ function Selector(){
 		var objects = game.inObjects(x,y);
 		if(objects){
 			objects.selected = true;
+			if(objects instanceof Nanobot) objects.changeMenu();
 		}
 	};
 

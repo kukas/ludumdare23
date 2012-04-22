@@ -37,22 +37,24 @@ function GUI(ctx){
 		this.width = width;
 		this.height = height;
 
+		this.hidden = false;
 		this.color = color;
-		this.image = new Image();
-		this.image.src = image;
+		this.image = image;
 		this.action = action;
 
 		this.pressed = false;
 
 		this.draw = function( ctx ){
-			if( this.pressed ){
-				ctx.drawImage( this.image, this.x, this.y );
-				ctx.strokeStyle = this.color;
-				ctx.lineWidth = 1;
-				ctx.strokeRect( this.x, this.y, this.width, this.height );
-			}
-			else {
-				ctx.drawImage( this.image, this.x, this.y );
+			if(!this.hidden){
+				if( this.pressed ){
+					ctx.drawImage( this.image, this.x, this.y );
+					ctx.strokeStyle = this.color;
+					ctx.lineWidth = 1;
+					ctx.strokeRect( this.x, this.y, this.width, this.height );
+				}
+				else {
+					ctx.drawImage( this.image, this.x, this.y );
+				}
 			}
 		}
 	};
@@ -70,8 +72,8 @@ function GUI(ctx){
 		this.rectangles[ name ] = new Rectangle(x,y, width,height, color);
 	};
 
-	this.addButton = function(name, x,y, width,height, src,color, action){
-		this.buttons[ name ] = new Button(x,y, width,height, src, color, action);
+	this.addButton = function(name, x,y, width,height, image,color, action){
+		this.buttons[ name ] = new Button(x,y, width,height, image, color, action);
 	};
 
 	this.press = function(x,y){

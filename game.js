@@ -11,21 +11,28 @@ function Game(canvas){
 	};
 
 	this.gui = new GUI( this.ctx );
+	this.textures = new Textures();
 
 	// this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","rgba(32,32,32,1)");
 	this.gui.addRectangle("lista",0,this.height-40, this.width,40,"#222");
-	this.gui.addButton("action1",10,this.height-35, 60,30,"Assets/tlacitko_kasarna.png","#d33",function(){
+	this.gui.addButton("action1",10,this.height-35, 60,30,this.textures.image.tlacitkoKasarna,"#d33",function(){
 		console.log("button 1");
 	});
-	this.gui.addButton("action2",80,this.height-35, 60,30,"Assets/tlacitko_tovarna.png","#d33",function(){
+	this.gui.addButton("action2",80,this.height-35, 60,30,this.textures.image.tlacitkoTovarna,"#d33",function(){
 		console.log("button 2");
 	});
-	this.gui.addButton("action3",150,this.height-35, 60,30,"Assets/tlacitko_kasarna.png","#d33",function(){
+	this.gui.addButton("action3",150,this.height-35, 60,30,this.textures.image.tlacitkoKasarna,"#d33",function(){
 		console.log("button 3");
 	});
-	this.gui.addButton("action4",220,this.height-35, 60,30,"Assets/tlacitko_kasarna.png","#d33",function(){
+	this.gui.addButton("action4",220,this.height-35, 60,30,this.textures.image.tlacitkoTovarna,"#d33",function(){
 		console.log("button 4");
 	});
+
+	this.hideMenu = function(){
+		for(i=1;i<=4;i++){
+			this.gui.buttons["action"+i].hidden = true;
+		}
+	}
 
 	this.gui.addText("carbon","Carbon:",430,this.height-16,"15px QuicksandLight","#bbb");
 	this.gui.addText("carbonValue", "000", 500,this.height -16,"15px QuicksandLight","#bbb");
@@ -57,8 +64,6 @@ function Game(canvas){
 	this.objects = [];
 
 	this.selected = [];
-
-	this.textures = new Textures();
 
 	this.init_level = function(src){
 		level_script = document.createElement("script");
@@ -151,14 +156,20 @@ Game.prototype.clearSelected = function(){
 Game.prototype.selectObjects = function() {
 	this.clearSelected();
 
+	var selected = [];
+	var onekind = true;
+
 	for(var i = this.objects.length; i--; ){
 		var x = this.objects[i].x - this.camera.x;
 		var y = this.objects[i].y - this.camera.y;
-		// var y = this.objects[i].y;
 		if( this.selector.inSelection(x,y) ){
 			this.objects[i].selected = true;
+			selected.push( this.objects[i] );
 		}
-	};
+	}
+	if(selected.length === 1){
+		selected[0].changeMenu();
+	}
 };
 
 Game.prototype.targetObjects = function(x,y) {
