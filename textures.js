@@ -7,6 +7,7 @@ function Textures(){
 		warbot : "Assets/warbot/warbot.png",
 		engineer : "Assets/genetic engineer/enginner.png",
 		background1 : "Assets/background1.png",
+		virus : "Assets/virus.PNG",
 	};
 	this.image = { };
 	for(i in this.src){
