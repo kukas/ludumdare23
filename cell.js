@@ -4,20 +4,19 @@ function Cell(x,y){
 
 	this.speed = 1;
 
-	this.background = new Image();
-	this.background.src = "Assets/plasma.png";
+	this.background = game.textures.image.cellPlasma;
 
 	this.vector = { x:0,y:0 };
 
 	this.organely = {
-		jadro : { x:0, y:0,distance:0, width:30, height:30, src:"Assets/nucleus.png" },
-		mitochondrie2 : { distance:60, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
-		mitochondrie1 : { distance:70, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
-		mitochondrie3 : { distance:80, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		jadro : { x:0, y:0,distance:0, width:30, height:30, image:game.textures.image.cellNucleus },
+		mitochondrie2 : { distance:60, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
+		mitochondrie1 : { distance:70, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
+		mitochondrie3 : { distance:80, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
 
-		mitochondrie4 : { distance:70, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
-		mitochondrie5 : { distance:60, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
-		mitochondrie6 : { distance:80, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie4 : { distance:70, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
+		mitochondrie5 : { distance:60, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
+		mitochondrie6 : { distance:80, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
 
 		// retikulum : { x:0, y:55,distance:20, width:30, height:30 },
 	};
@@ -32,17 +31,6 @@ function Cell(x,y){
 	this.radius = max;
 	this.width=2*this.radius;
 	this.height=2*this.radius;
-
-	this.load = function(){
-		for(i in this.organely){
-			if(this.organely[i].src){
-				this.organely[i].image = new Image();
-				this.organely[i].image.src = this.organely[i].src;
-			}
-		}
-	}
-
-	this.load();
 
 	this.render = function(ctx){
 		//ctx.strokeRect(this.x, this.y, 10,10);

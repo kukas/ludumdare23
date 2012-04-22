@@ -6,8 +6,8 @@ function Game(canvas){
 	this.height = this.canvas.height = 480;
 
 	this.playground = {
-		width : 1000,
-		height : 600
+		width : 800,
+		height : 480
 	};
 
 	this.gui = new GUI( this.ctx );
@@ -58,24 +58,25 @@ function Game(canvas){
 
 	this.selected = [];
 
-	this.background = new Image();
-
-	this.debugCube = {x:0,y:0};
-
 	this.textures = new Textures();
 
 	this.init_level = function(src){
 		level_script = document.createElement("script");
 		document.body.appendChild( level_script )
 		level_script.src = src;
+		// setTimeout( function(){
 		level_script.onload = function(){
 			_this.level = level;
 			_this.objects = level.objects;
-			_this.background.src = level.background;
+			_this.playground = level.playground;
+			_this.background = level.background;
+
+			setInterval( function(){ _this.render(); _this.tick(); }, 1000/60 );
 		}
+		// ,1000);
 	};
 
-	this.init_level("level.js");
+	this.textures.load( function(){ game.init_level("level1.js") } );
 }
 
 Game.prototype.render = function() {
@@ -148,7 +149,6 @@ Game.prototype.clearSelected = function(){
 }
 
 Game.prototype.selectObjects = function() {
-	console.log(this.selector.rectangle)
 	this.clearSelected();
 
 	for(var i = this.objects.length; i--; ){

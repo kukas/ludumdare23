@@ -27,7 +27,13 @@ function Nanobot() {
 			a += Math.PI;
 			}
 
-		this.rotation = a;
+		//this.rotation = a;
+		if(Math.abs(this.rotation - a) < 0.09){
+			this.rotation = a;
+		}
+		else{
+			this.rotation = a > this.rotation ? this.rotation += 0.09 : this.rotation -= 0.09;
+		}
 		
 		ctx.rotate(this.rotation);
 		ctx.scale(0.5,0.5)

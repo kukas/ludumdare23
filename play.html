@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title>šablona</title>
+	<meta charset="utf-8">
+	<style>
+		@font-face {
+		    font-family: 'QuicksandLight';
+		    src: url('fonts/Quicksand_Light-webfont.eot');
+		    src: url('fonts/Quicksand_Light-webfont.eot?#iefix') format('embedded-opentype'),
+		         url('fonts/Quicksand_Light-webfont.woff') format('woff'),
+		         url('fonts/Quicksand_Light-webfont.ttf') format('truetype'),
+		         url('fonts/Quicksand_Light-webfont.svg#QuicksandLight') format('svg');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		body {
+			background-color:#F1E2EB;
+			padding:0;margin:0;
+			background-image:url('Assets/half-top.png');
+			background-repeat: no-repeat;
+			background-position:center 2px;
+		}
+		canvas {
+			background-color:#fff;
+			background-image: url(Assets/loading.gif);
+			background-repeat:no-repeat;
+			background-position:center;
+			box-shadow:#444 0 0 10px;
+		}
+		footer {
+			position:absolute;
+			width:100%;
+			bottom:5px;
+			text-align: center;
+			font: 16pt "QuicksandLight";
+			font-weight:900;
+			color:#F1E2EB;
+			text-shadow:#444 0px 0px 10px;
+		}
+	</style>
+	<script src="textures.js"></script>
+	<script src="jukebox.js"></script>
+	
+	<script src="object2d.js"></script>
+	<script src="animation.js"></script>
+	<script src="gui.js"></script>
+	<script src="cell.js"></script>
+	<script src="nanobot.js"></script>
+	<script src="selector.js"></script>
+	<script src="game.js"></script>
+	<script src="eventhandler.js"></script>
+	<script src="init.js"></script>
+	<script src="entities.js"></script>
+</head>
+<body onload="init();">
+	<footer>&copy; Qaterknan</footer>
+</body>
+</html>

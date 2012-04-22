@@ -1,10 +1,9 @@
-function Animation(src,frames,speed){
+function Animation(image,frames,speed){
 		
 		this.speed=speed;
 		this.frame=0;
 		
-		this.zdroj=new Image();
-		this.zdroj.src=src;
+		this.zdroj=image;
 		this.width = this.zdroj.width/frames;
 		this.height=this.zdroj.height;
 		this.frames=frames*speed;

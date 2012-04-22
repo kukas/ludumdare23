@@ -3,20 +3,31 @@ function Textures(){
 		cellPlasma : "Assets/plasma.png",
 		cellNucleus : "Assets/nucleus.png",
 		cellMitochondrie : "Assets/mit.png",
-		cellMitochondrie : "Assets/mit.png",
-	}
-	this.image = {}
+		builder : "Assets/builder/builder.png",
+		warbot : "Assets/warbot/warbot.png",
+		engineer : "Assets/genetic engineer/enginner.png",
+		background1 : "Assets/background1.png",
+	};
+	this.image = { };
+	for(i in this.src){
+		this.image[ i ] = new Image();
+	};
 
-	this.load = function(){
-		var pocetTextur = this.src.length;
+	// počet položek v objektu
+	this.pocetTextur = Object.keys(this.src).length;
+
+	var _this = this;
+
+	this.load = function( callback ){
 		for(i in this.src){
-			this.image[ i ] = new Image();
+			if(!this.image[ i ]) this.image[ i ] = new Image();
 			this.image[ i ].onload = function(){
-
+				_this.pocetTextur--;
+				if( _this.pocetTextur === 0 ){
+					callback();
+				}
 			}
 			this.image[ i ].src = this.src[ i ];
 		}
 	}
-
-	setInterval( function(){ game.render(); game.tick(); }, 1000/60 );
 }

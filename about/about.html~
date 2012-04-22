@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>about</title>
+<style>
+@font-face {
+    font-family: 'LoadedRegular';
+    src: url('../loaded-webfont.eot');
+    src: url('../loaded-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../loaded-webfont.woff') format('woff'),
+         url('../loaded-webfont.ttf') format('truetype'),
+         url('../loaded-webfont.svg#LoadedRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+a {text-decoration: none; color: black;}
+a:hover {text-decoration: underline; color: black;}
+.back { 
+bottom: 100px;
+font-size:70px;
+width: 250px; 
+height: 50px; 
+background-repeat: no-repeat; 
+position: absolute; 
+background-image: url("back.png"); 
+font-family: 'LoadedRegular';}
+.cele {
+width: 400px; 
+height 600px; 
+margin:0 auto; }
+
+body {
+background-color:#f1e2eb;}
+
+h1 {font-family:'LoadedRegular'; font-size: 60px; }
+</style>
+
+</head>
+<body>
+<div class="cele">
+
+<div class="text"> 
+<h1>ABOUT</h1>
+<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+ </div>
+<div class="back"><a href="../menu.html">BACK</a></div>
+</div>
+<div><img src="half.png" width="1000" height="874" alt="" />  </div>
+
+</body>
+
+</html>

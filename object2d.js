@@ -22,8 +22,6 @@ Object2D.prototype.move = function() {
 
 	var c = game.findCollisions( this );
 	if(c){
-		game.debugCube.x = (this.x+c.x)/2;
-		game.debugCube.y = (this.y+c.y)/2;
 		this.x -= this.vector.x;
 		this.y -= this.vector.y;
 	}

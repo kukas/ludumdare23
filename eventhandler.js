@@ -11,6 +11,7 @@ function Eventhandler( dom ) {
 	this.mouseControls = {
 		1 : new Mouse( 
 			function(){
+				console.log(_this.tmouse.x, _this.tmouse.y)
 				game.selector.beginSelect( _this.tmouse.x, _this.tmouse.y ); 
 				game.gui.press(_this.mouse.x, _this.mouse.y);
 			}, 
