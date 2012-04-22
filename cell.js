@@ -81,10 +81,8 @@ function Cell(x,y){
 		}
 	}
 	this.tick = function(){
-		this.goToTarget();
-		this.move();
-
-
+		//this.goToTarget();
+		//this.move();
 
 		this.moveOrganely();
 	}

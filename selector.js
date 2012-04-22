@@ -5,14 +5,22 @@ function Selector(){
 		width:0,
 		height:0
 	};
+
 	this.beginSelect = function(x,y){
 		this.rectangle.x = x;
 		this.rectangle.y = y;
+
+		var objects = game.inObjects(x,y);
+		if(objects){
+			objects.selected = true;
+		}
 	};
+
 	this.moveSelect = function(x,y){
 		this.rectangle.width = x - this.rectangle.x;
 		this.rectangle.height = y - this.rectangle.y;
 	};
+
 	this.closeSelect = function(){
 		this.rectangle = {
 			x:0,
@@ -20,7 +28,8 @@ function Selector(){
 			width:0,
 			height:0
 		};
-	}
+	};
+
 	this.inSelection = function(x,y){
 		if( this.rectangle.width < 0 ){
 			this.rectangle.x += this.rectangle.width;
@@ -32,7 +41,8 @@ function Selector(){
 		}
 
 		return this.rectangle.x < x && this.rectangle.x+this.rectangle.width > x &&	this.rectangle.y < y && this.rectangle.y+this.rectangle.height > y;
-	}
+	};
+	
 	this.render = function(ctx){
 		if(this.rectangle.width !== 0 && this.rectangle.height !== 0){
 			ctx.fillStyle = "rgba(20,20,120,0.1)";
