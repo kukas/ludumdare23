@@ -19,7 +19,6 @@ function Eventhandler( dom ) {
 			}, 
 			function( type ){ 
 				if(game.selector.rectangle.width == 0 && game.selector.rectangle.height == 0){
-					console.log("Provádím");
 					if (_this.controls[17].down){
 						game.inObjects(_this.mouse.x,_this.mouse.y).selected=true;
 					}
