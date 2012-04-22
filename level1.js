@@ -7,7 +7,8 @@ var level = {
 		new Cell(240,125),new Cell(80,250), 
 		new Cell(350,700),new Cell(170,580),
 		new Cell(760,125),new Cell(930,250),
-		new Cell(760,700),new Cell(930,600)
+		new Cell(760,700),new Cell(930,600),
+		new Virus(700,700)
 		],
 	background : game.textures.image.background1
 }

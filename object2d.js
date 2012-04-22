@@ -62,6 +62,7 @@ Object2D.prototype.move = function() {
 		else{
 			return false;
 		}*/
+	};
 	}
 };
 
