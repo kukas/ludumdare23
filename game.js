@@ -90,15 +90,10 @@ Game.prototype.render = function() {
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].render( this.ctx);
 	}
+	this.selector.render(this.ctx)
 	this.ctx.restore();
 
 	this.gui.render();
-
-	this.selector.render(this.ctx)
-
-	this.ctx.fillStyle = "#00FF00";
-	this.ctx.fillRect(this.debugCube.x-5,this.debugCube.y-5,10,10);
-	
 };
 
 Game.prototype.colliding = function (o1,o2){
@@ -140,6 +135,7 @@ Game.prototype.drawResources = function( obj ){
 }
 
 Game.prototype.tick = function() {
+	eventhandler.loop()
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].tick();
 	}
@@ -148,15 +144,17 @@ Game.prototype.tick = function() {
 Game.prototype.clearSelected = function(){
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].selected = false;
-		}
+	}
 }
 
 Game.prototype.selectObjects = function() {
+	console.log(this.selector.rectangle)
 	this.clearSelected();
 
 	for(var i = this.objects.length; i--; ){
-		var x = this.objects[i].x;
-		var y = this.objects[i].y;
+		var x = this.objects[i].x - this.camera.x;
+		var y = this.objects[i].y - this.camera.y;
+		// var y = this.objects[i].y;
 		if( this.selector.inSelection(x,y) ){
 			this.objects[i].selected = true;
 		}
