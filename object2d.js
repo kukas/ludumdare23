@@ -63,7 +63,8 @@ Object2D.prototype.move = function() {
 		else{
 			return false;
 		}*/
-	}
+	};
+	
 };
 
 Object2D.prototype.accelerate = function(vec) {

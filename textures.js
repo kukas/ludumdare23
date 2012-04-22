@@ -12,6 +12,7 @@ function Textures(){
 		background4 : "Assets/background4.png",
 		tlacitkoKasarna : "Assets/tlacitko_kasarna.png",
 		tlacitkoTovarna : "Assets/tlacitko_tovarna.png",
+		virus : "Assets/virus.PNG",
 	};
 	this.image = { };
 	for(i in this.src){
