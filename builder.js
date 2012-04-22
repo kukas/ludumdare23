@@ -12,8 +12,9 @@ function Builder(x,y) {
 	// this.radius=20;
 	this.rotation=0;
 	
-	this.texture=new Image();
-	this.texture.src = "Assets/genetic enginner.png";
+	
+	this.texture=new Animation("Assets/builder.png",4,5);
+	
 
 	this.controls = [
 		"blabla"
@@ -40,14 +41,14 @@ function Builder(x,y) {
 		
 		ctx.rotate(this.rotation);
 		ctx.scale(0.5,0.5)
-		ctx.drawImage(this.texture, -this.texture.width/2,-this.texture.height/2);
+		this.texture.drawFrame(-this.texture.width/2,-this.texture.height/2,ctx);
 
 		if(this.selected){
 			ctx.strokeStyle = "rgb(20,20,120)";
 			ctx.fillStyle = "rgba(20,20,120,0.2)";
 			ctx.lineWidth = 2;
-			ctx.strokeRect( -this.texture.width/2-5,-this.texture.height/2-10, this.texture.width+5,this.texture.height+20 );
-			ctx.fillRect( -this.texture.width/2-5,-this.texture.height/2-10, this.texture.width+5,this.texture.height+20 );
+			ctx.strokeRect( -this.texture.width/2-5,-this.texture.height/2-5, this.texture.width+10,this.texture.height+10 );
+			ctx.fillRect( -this.texture.width/2-5,-this.texture.height/2-5, this.texture.width+10,this.texture.height+10 );
 		}
 
 		ctx.restore();
