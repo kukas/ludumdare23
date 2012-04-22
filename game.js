@@ -5,6 +5,11 @@ function Game(canvas){
 	this.width = this.canvas.width = 800;
 	this.height = this.canvas.height = 480;
 
+	this.playground = {
+		width : 2000,
+		height : 800
+	};
+
 	this.gui = new GUI( this.ctx );
 
 	// this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","rgba(32,32,32,1)");
@@ -38,6 +43,17 @@ function Game(canvas){
 		oxygen:5
 	}
 
+	this.camera = { 
+		x:0, 
+		y:0,
+		tX : function(x){
+			return this.x+x;
+		},
+		tY : function(y){
+			return this.y+y;
+		} 
+	}
+
 	this.objects = [];
 
 	this.selected = [];
@@ -63,15 +79,18 @@ function Game(canvas){
 }
 
 Game.prototype.render = function() {
-	this.drawResources();
-	// this.ctx.clearRect( 0,0, this.width, this.height );
 	this.ctx.drawImage(this.background, 0,0, this.width, this.height )
-	// this.ctx.fillStyle = this.background;
-	// this.ctx.fillRect( 0,0, this.width, this.height );
+	this.ctx.save();
+	this.ctx.translate(-this.camera.x,-this.camera.y);
+	this.drawResources();
+
+	this.ctx.strokeStyle = "black";
+	this.ctx.strokeRect(0,0,this.playground.width,this.playground.height)
 
 	for(var i = this.objects.length; i--; ){
 		this.objects[i].render( this.ctx);
 	}
+	this.ctx.restore();
 
 	this.gui.render();
 
