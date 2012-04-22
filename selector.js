@@ -31,7 +31,10 @@ function Selector(){
 		};
 	};
 
-	this.inSelection = function(x,y){
+	this.inSelection = function(_x,_y){
+		var x = game.camera.tX(_x);
+		var y = game.camera.tY(_y);
+
 		if( this.rectangle.width < 0 ){
 			this.rectangle.x += this.rectangle.width;
 			this.rectangle.width = -this.rectangle.width;

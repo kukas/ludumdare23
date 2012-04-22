@@ -11,9 +11,13 @@ function Cell(x,y){
 
 	this.organely = {
 		jadro : { x:0, y:0,distance:0, width:30, height:30, src:"Assets/nucleus.png" },
-		mitochondrie1 : { distance:70, angle:Math.random()*Math.PI*2, speed:Math.random()/100, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
-		mitochondrie2 : { distance:60, angle:Math.random()*Math.PI*2, speed:Math.random()/100, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
-		mitochondrie3 : { distance:80, angle:Math.random()*Math.PI*2, speed:Math.random()/100, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie2 : { distance:60, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie1 : { distance:70, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie3 : { distance:80, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+
+		mitochondrie4 : { distance:70, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie5 : { distance:60, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
+		mitochondrie6 : { distance:80, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, src:"Assets/mit.png" },
 
 		// retikulum : { x:0, y:55,distance:20, width:30, height:30 },
 	};

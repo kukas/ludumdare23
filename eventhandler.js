@@ -11,36 +11,35 @@ function Eventhandler( dom ) {
 	this.mouseControls = {
 		1 : new Mouse( 
 			function(){
-				game.selector.beginSelect( _this.mouse.x, _this.mouse.y ); 
+				game.selector.beginSelect( _this.tmouse.x, _this.tmouse.y ); 
 				game.gui.press(_this.mouse.x, _this.mouse.y);
 			}, 
 			function( type ){ 
 				if(game.selector.rectangle.width == 0 && game.selector.rectangle.height == 0){
 					if (_this.controls[17].down){
-						game.inObjects(_this.mouse.x,_this.mouse.y).selected=true;
+						game.inObjects(_this.tmouse.x,_this.tmouse.y).selected=true;
 					}
 					else{
 						for(i in game.objects){
-							if(game.inObjects(_this.mouse.x,_this.mouse.y).x==game.objects[i].x && game.inObjects(_this.mouse.x,_this.mouse.y).y==game.objects[i].y){
+							var obj = game.inObjects(_this.tmouse.x,_this.tmouse.y);
+							if(obj.x == game.objects[i].x && obj.y == game.objects[i].y){
 								game.clearSelected();
 								game.objects[i].selected=true;
-								return true;
+								return;
 							}
-							else{
-								game.clearSelected();
-							};
 						};
+						game.clearSelected();
 					};
 				}
-				else{
+				else {
 					game.selectObjects();
 					game.selector.closeSelect();
 				};
 			}, 
 			function( type ){ 
-				// game.camera.x = (_this.mouse.x/game.width)*game.playground.width;
-				// game.camera.y = (_this.mouse.y/game.height)*game.playground.height;
-				game.selector.moveSelect( _this.mouse.x, _this.mouse.y ); 
+				game.camera.x = (game.playground.width-game.width)/game.width*_this.mouse.x;
+				game.camera.y = (game.playground.height-game.height)/game.height*_this.mouse.y;
+				game.selector.moveSelect( _this.tmouse.x, _this.tmouse.y ); 
 			} ),
 		3 : new Mouse(
 			function(){ 
@@ -51,6 +50,12 @@ function Eventhandler( dom ) {
 			game.camera.x = (game.playground.width-game.width)/game.width*_this.mouse.x;
 			game.camera.y = (game.playground.height-game.height)/game.height*_this.mouse.y;
 		}
+		// 2 : new Mouse(false,false,
+		// 	function(){
+		// 		game.camera.x = (game.playground.width-game.width)/game.width*_this.mouse.x;
+		// 		game.camera.y = (game.playground.height-game.height)/game.height*_this.mouse.y;
+		// 	}
+		// 	),
 	}
 	// ---------------------------------------------------------------------------
 
@@ -71,6 +76,8 @@ function Eventhandler( dom ) {
 	this.dom = dom;
 
 	this.mouse = { x:0, y:0 };
+	// pozice myši relativně k playgroundu
+	this.tmouse = { x:0, y:0 };
 
 	document.body.addEventListener( "keydown", function(ev){ _this.keyboard(ev); }, true );
 	document.body.addEventListener( "keyup", function(ev){ _this.keyboard(ev); }, true );
@@ -79,8 +86,6 @@ function Eventhandler( dom ) {
 	this.dom.addEventListener( "mousedown", function(ev){ _this.mousehandler(ev); }, true );
 	this.dom.addEventListener( "mouseup", function(ev){ _this.mousehandler(ev); }, true );
 	this.dom.addEventListener( "contextmenu", function(ev){ ev.preventDefault() }, true );
-	// případně jde vytáhnout do nějakého tick loopu.
-	setInterval( function(){ _this.loop(); }, 50 );
 }
 
 Eventhandler.prototype.keyboard = function(e) {
@@ -104,6 +109,9 @@ Eventhandler.prototype.mousehandler = function(e) {
 		type = e.type;
 	this.mouse.x = e.pageX - this.dom.offsetLeft;
 	this.mouse.y = e.pageY - this.dom.offsetTop;
+	this.tmouse.x = game.camera.tX(this.mouse.x);
+	this.tmouse.y = game.camera.tY(this.mouse.y);
+
 
 	if( this.mouseControls[ which ] ){
 
