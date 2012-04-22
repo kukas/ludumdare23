@@ -5,8 +5,13 @@ function Textures(){
 		cellMitochondrie : "Assets/mit.png",
 		builder : "Assets/builder/builder.png",
 		warbot : "Assets/warbot/warbot.png",
-		engineer : "Assets/genetic engineer/enginner.png",
+		engineer : "Assets/genetic engineer/engineer.png",
 		background1 : "Assets/background1.png",
+		background2 : "Assets/background2.png",
+		background3 : "Assets/background3.png",
+		background4 : "Assets/background4.png",
+		tlacitkoKasarna : "Assets/tlacitko_kasarna.png",
+		tlacitkoTovarna : "Assets/tlacitko_tovarna.png",
 	};
 	this.image = { };
 	for(i in this.src){
