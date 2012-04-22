@@ -3,6 +3,7 @@ function Eventhandler( dom ) {
 	// ---------------------------------------------------------------------------
 	// keycode : new Key( funkce_keydown, funkce_keyup, true=koná keydown dokud je klávesa stisknutá false=vykoná jednou )
 	this.controls = {
+		17 : new Key(false),
 		32 : new Key( function(){ console.log("mezerník") }, false, "keydown" ),
 		73 : new Key ( function (){ game.objects[1].vector={x:0,y:0};game.objects[1].vector.y--; }),
 		74 : new Key ( function (){ game.objects[1].vector={x:0,y:0};game.objects[1].vector.x--; }),
@@ -17,8 +18,28 @@ function Eventhandler( dom ) {
 				game.selector.beginSelect( _this.mouse.x, _this.mouse.y ); 
 			}, 
 			function( type ){ 
-				game.selectObjects();
-				game.selector.closeSelect() 
+				if(game.selector.rectangle.width == 0 && game.selector.rectangle.height == 0){
+					console.log("Prov�d�m");
+					if (_this.controls[17].down){
+						game.inObjects(_this.mouse.x,_this.mouse.y).selected=true;
+					}
+					else{
+						for(i in game.objects){
+							if(game.inObjects(_this.mouse.x,_this.mouse.y).x==game.objects[i].x && game.inObjects(_this.mouse.x,_this.mouse.y).y==game.objects[i].y){
+								game.clearSelected();
+								game.objects[i].selected=true;
+								return true;
+							}
+							else{
+								game.clearSelected();
+							};
+						};
+					};
+				}
+				else{
+					game.selectObjects();
+					game.selector.closeSelect();
+				};
 			}, 
 			function( type ){ 
 				game.selector.moveSelect( _this.mouse.x, _this.mouse.y ); 
