@@ -1,9 +1,5 @@
-function Builder(x,y) {
+function Nanobot() {
 	
-	this.x = x;
-	this.y = y;
-	
-	this.health=100;
 	this.proces=false;
 	
 	this.width=10;
@@ -11,10 +7,6 @@ function Builder(x,y) {
 	this.radius=20;
 	// this.radius=20;
 	this.rotation=0;
-	
-	
-	this.texture=new Animation("Assets/builder.png",4,5);
-	
 
 	this.controls = [
 		"blabla"
@@ -58,4 +50,4 @@ function Builder(x,y) {
 		this.move();
 	}
 };
-Builder.prototype = new Object2D();
+Nanobot.prototype = new Object2D();
