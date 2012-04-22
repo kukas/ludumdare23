@@ -1,4 +1,5 @@
 function Selector(){
+	this.active = false;
 	this.rectangle = {
 		x:0,
 		y:0,
@@ -8,6 +9,8 @@ function Selector(){
 	};
 
 	this.beginSelect = function(x,y){
+		this.closeSelect();
+		this.active = true;
 		this.rectangle.x = x;
 		this.rectangle.y = y;
 
@@ -23,6 +26,7 @@ function Selector(){
 	};
 
 	this.closeSelect = function(){
+		this.active = false;
 		this.rectangle = {
 			x:0,
 			y:0,
@@ -48,7 +52,7 @@ function Selector(){
 	};
 	
 	this.render = function(ctx){
-		if(this.rectangle.width !== 0 && this.rectangle.height !== 0){
+		if(this.active){
 			ctx.fillStyle = "rgba(20,20,120,0.1)";
 			ctx.fillRect( this.rectangle.x,this.rectangle.y,this.rectangle.width,this.rectangle.height );
 			ctx.strokeStyle = "rgba(20,20,120,1)";
