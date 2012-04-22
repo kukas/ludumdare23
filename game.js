@@ -62,6 +62,8 @@ function Game(canvas){
 
 	this.debugCube = {x:0,y:0};
 
+	this.textures = new Textures();
+
 	this.init_level = function(src){
 		level_script = document.createElement("script");
 		document.body.appendChild( level_script )
@@ -70,8 +72,6 @@ function Game(canvas){
 			_this.level = level;
 			_this.objects = level.objects;
 			_this.background.src = level.background;
-
-			setInterval( function(){ _this.render(); _this.tick(); }, 1000/60 );
 		}
 	};
 
