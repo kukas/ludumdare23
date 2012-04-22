@@ -29,10 +29,8 @@ function Eventhandler( dom ) {
 								game.objects[i].selected=true;
 								return true;
 							}
-							else{
-								game.clearSelected();
-							};
 						};
+						game.clearSelected();
 					};
 				}
 				else{
