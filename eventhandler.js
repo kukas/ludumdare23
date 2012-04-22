@@ -13,8 +13,9 @@ function Eventhandler( dom ) {
 	// new Key( funkce_mousedown, funkce_mouseup, true=koná mousedown dokud je tlačítko stisknuté false=vykoná jednou )
 	this.mouseControls = {
 		1 : new Mouse( 
-			function(){ 
+			function(){
 				game.selector.beginSelect( _this.mouse.x, _this.mouse.y ); 
+				game.gui.press(_this.mouse.x, _this.mouse.y);
 			}, 
 			function( type ){ 
 				game.selectObjects();
