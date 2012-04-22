@@ -9,17 +9,17 @@ function Game(canvas){
 
 	// this.gui.addText("test", "Qaterknan productions", this.width/2,  this.height/2,"30pt QuicksandLight","rgba(32,32,32,1)");
 	this.gui.addRectangle("lista",0,this.height-40, this.width,40,"#222");
-	this.gui.addButton("action1",10,this.height-35, 60,30,"#bbb",function(){
-		console.log("button 1")
+	this.gui.addButton("action1",10,this.height-35, 60,30,"Assets/tlacitko_kasarna.png","#d33",function(){
+		console.log("button 1");
 	});
-	this.gui.addButton("action2",80,this.height-35, 60,30,"#bbb",function(){
-		console.log("button 2")
+	this.gui.addButton("action2",80,this.height-35, 60,30,"Assets/tlacitko_tovarna.png","#d33",function(){
+		console.log("button 2");
 	});
-	this.gui.addButton("action3",150,this.height-35, 60,30,"#bbb",function(){
-		console.log("button 3")
+	this.gui.addButton("action3",150,this.height-35, 60,30,"Assets/tlacitko_kasarna.png","#d33",function(){
+		console.log("button 3");
 	});
-	this.gui.addButton("action4",220,this.height-35, 60,30,"#bbb",function(){
-		console.log("button 4")
+	this.gui.addButton("action4",220,this.height-35, 60,30,"Assets/tlacitko_kasarna.png","#d33",function(){
+		console.log("button 4");
 	});
 
 	this.gui.addText("carbon","Carbon:",430,this.height-16,"15px QuicksandLight","#bbb");
