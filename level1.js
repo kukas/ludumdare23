@@ -13,3 +13,6 @@ var level = {
 		],
 	background : game.textures.image.background1
 }
+level.objects[0].organely.jadro.image = new Animation( game.textures.image.cellHQ,5,5 )
+level.objects[4].organely.jadro.image = new Animation( game.textures.image.cellAugument,1,1)
+level.objects[5].organely.jadro.image = new Animation( game.textures.image.cellBarracks,1,1)

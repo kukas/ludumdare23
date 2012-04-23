@@ -13,6 +13,7 @@ function Nanobot() {
 			if(this.menu[i]){
 				game.gui.buttons["action"+(i+1)].hidden = false;
 				game.gui.buttons["action"+(i+1)].image = this.menu[i].image;
+				game.gui.buttons["action"+(i+1)].action = this.menu[i].action;
 			}
 			else {
 				game.gui.buttons["action"+(i+1)].hidden = true;

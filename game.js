@@ -65,11 +65,12 @@ function Game(canvas){
 
 	this.selected = [];
 
+	this.buildmode = new Buildmode();
+
 	this.init_level = function(src){
 		level_script = document.createElement("script");
 		document.body.appendChild( level_script )
 		level_script.src = src;
-		// setTimeout( function(){
 		level_script.onload = function(){
 			_this.level = level;
 			_this.objects = level.objects;
@@ -78,7 +79,6 @@ function Game(canvas){
 
 			setInterval( function(){ _this.render(); _this.tick(); }, 1000/60 );
 		}
-		// ,1000);
 	};
 
 	this.textures.load( function(){ game.init_level("level1.js") } );
@@ -87,7 +87,7 @@ function Game(canvas){
 Game.prototype.render = function() {
 	this.ctx.drawImage(this.background, 0,0, this.width, this.height )
 	this.ctx.save();
-	this.ctx.translate(-this.camera.x,-this.camera.y);
+	this.ctx.translate(Math.round(-this.camera.x),Math.round(-this.camera.y));
 	this.drawResources();
 
 	this.ctx.strokeStyle = "black";

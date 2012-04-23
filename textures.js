@@ -3,6 +3,11 @@ function Textures(){
 		cellPlasma : "Assets/plasma.png",
 		cellNucleus : "Assets/nucleus.png",
 		cellMitochondrie : "Assets/mit.png",
+		cellBarracks : "Assets/barracks.png",
+		cellHQ : "Assets/headquarters.png",
+		cellAugument : "Assets/nucleus agument.PNG",
+		// cellMitochondrie : "Assets/mit.png",
+
 		builder : "Assets/builder/builder.png",
 		warbot : "Assets/warbot/warbot.png",
 		engineer : "Assets/genetic engineer/engineer.png",
@@ -13,6 +18,7 @@ function Textures(){
 		tlacitkoKasarna : "Assets/tlacitko_kasarna.png",
 		tlacitkoTovarna : "Assets/tlacitko_tovarna.png",
 		virus : "Assets/virus.PNG",
+
 	};
 	this.image = { };
 	for(i in this.src){

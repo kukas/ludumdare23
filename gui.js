@@ -79,7 +79,7 @@ function GUI(ctx){
 	this.press = function(x,y){
 		for( i in this.buttons ){
 			this.buttons[i].pressed = false;
-			if(x > this.buttons[i].x && y > this.buttons[i].y &&
+			if(!this.buttons[i].hidden && x > this.buttons[i].x && y > this.buttons[i].y &&
 				x < this.buttons[i].x+this.buttons[i].width && y < this.buttons[i].y+this.buttons[i].height){
 				this.buttons[i].action();
 				this.buttons[i].pressed = true;

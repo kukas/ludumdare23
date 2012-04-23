@@ -1,3 +1,11 @@
+function Organela(distance,speed,image){
+	this.x = 0;
+	this.y = 0;
+	this.distance = distance;
+	this.speed = speed;
+	this.angle = Math.random()*Math.PI*2;
+	this.image = image;
+}
 function Cell(x,y){
 	this.x = x;
 	this.y = y;
@@ -9,28 +17,32 @@ function Cell(x,y){
 	this.vector = { x:0,y:0 };
 
 	this.organely = {
-		jadro : { x:0, y:0,distance:0, width:30, height:30, image:game.textures.image.cellNucleus },
-		mitochondrie2 : { distance:60, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
-		mitochondrie1 : { distance:70, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
-		mitochondrie3 : { distance:80, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
-
-		mitochondrie4 : { distance:70, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
-		mitochondrie5 : { distance:60, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
-		mitochondrie6 : { distance:80, angle:Math.random()*Math.PI*2, speed:Math.random()/500, x:0, y:0, width:10, height:10, image:game.textures.image.cellMitochondrie },
-
+		jadro : new Organela(0,0,new Animation(game.textures.image.cellNucleus,1,1)),
+		mitochondrie1 : new Organela( 50,Math.random()/500,new Animation(game.textures.image.cellMitochondrie,1,1) ),
+		mitochondrie2 : new Organela( 70,Math.random()/500,new Animation(game.textures.image.cellMitochondrie,1,1) ),
+		mitochondrie3 : new Organela( 80,Math.random()/500,new Animation(game.textures.image.cellMitochondrie,1,1) ),
+		mitochondrie4 : new Organela( 60,Math.random()/500,new Animation(game.textures.image.cellMitochondrie,1,1) ),
+		mitochondrie5 : new Organela( 75,Math.random()/500,new Animation(game.textures.image.cellMitochondrie,1,1) ),
+		mitochondrie6 : new Organela( 85,Math.random()/500,new Animation(game.textures.image.cellMitochondrie,1,1) ),
 		// retikulum : { x:0, y:55,distance:20, width:30, height:30 },
 	};
 
 	var max = 0;
 	for(var i in this.organely){
-		var d = this.organely[i].distance + Math.sqrt(this.organely[i].width*this.organely[i].width/4+this.organely[i].height*this.organely[i].height/4);
+		var d = this.organely[i].distance;
 		if(max < d){
 			max = d;
 		}
 	}
-	this.radius = max;
+	this.radius = max + 10;
 	this.width=2*this.radius;
 	this.height=2*this.radius;
+
+	this.build = function(co, misto_ceho){
+		for(i in co){
+			this.organely[misto_ceho][i] = co[i];
+		}
+	}
 
 	this.render = function(ctx){
 		//ctx.strokeRect(this.x, this.y, 10,10);
@@ -47,8 +59,9 @@ function Cell(x,y){
 		ctx.save();
 		ctx.translate(this.x,this.y);
 		for(var i in this.organely){
-			if(this.organely[i].image) ctx.drawImage(this.organely[i].image,this.organely[i].x - this.organely[i].image.width/2, this.organely[i].y - this.organely[i].image.height/2)
-			else ctx.fillRect(this.organely[i].x - this.organely[i].width/2, this.organely[i].y - this.organely[i].height/2, this.organely[i].width,this.organely[i].height);
+			var x = this.organely[i].x - this.organely[i].image.width/2;
+			var y = this.organely[i].y - this.organely[i].image.height/2;
+			this.organely[i].image.drawFrame(x,y,ctx)
 		}
 		ctx.restore();
 

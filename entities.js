@@ -17,7 +17,7 @@ function Builder(x,y){
 	this.vector={x:0,y:0};
 	this.texture= new Animation(game.textures.image.builder,4,1);
 	this.menu = [
-		{ image : game.textures.image.tlacitkoTovarna },
+		{ image : game.textures.image.tlacitkoTovarna, action : function(){ game.buildmode.enable(this, "tovarna") } },
 		{ image : game.textures.image.tlacitkoKasarna },
 	];
 };
